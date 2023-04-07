@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); 
         animator = GetComponent<Animator>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb.isKinematic = true;
     }
 
     // Update is called once per frame
@@ -45,4 +46,5 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = movementDirection.normalized * speed;
     }
+
 }
