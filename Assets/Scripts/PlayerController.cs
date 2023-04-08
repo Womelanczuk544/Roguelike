@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Vector3 movementDirection;
     private SpriteRenderer spriteRenderer;
+    public float dashForce = 1f;
+    private bool isDashing = false;
+    private bool canDash = true;
+    public float dashiingTime = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +44,30 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space) && canDash) {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        rb.velocity = movementDirection.normalized * dashForce;
+        /* rb.AddForce(movementDirection.normalized * dashForce, ForceMode2D.Impulse);*/
+        yield return new WaitForSeconds(dashiingTime);
+        canDash = true;
+        isDashing = false;
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = movementDirection.normalized * speed;
+       if(!isDashing)
+        {
+            rb.velocity = movementDirection.normalized * speed;
+
+        }
     }
 
 }

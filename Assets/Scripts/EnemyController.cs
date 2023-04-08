@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public float health = 100;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    public GameObject player;
+    private GameObject player;
     private Vector3 movementDirection;
     public float speed = 1f;
 
@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
