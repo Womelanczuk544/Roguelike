@@ -5,22 +5,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1f;
+
     private Rigidbody2D rb;
     private Animator animator;
     private Vector3 movementDirection;
     private SpriteRenderer spriteRenderer;
-    public float dashForce = 1f;
     private bool isDashing = false;
     private bool canDash = true;
+
+    public float speed = 1f;
+    public float dashForce = 1f;
     public float dashiingTime = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
-        animator = GetComponent<Animator>(); 
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
     }
 
     // Update is called once per frame
@@ -29,10 +32,12 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
-        if (movementDirection != Vector3.zero) {
+        if (movementDirection != Vector3.zero)
+        {
             animator.SetBool("isRunning", true);
 
-            if(movementDirection.x < 0) {
+            if (movementDirection.x < 0)
+            {
                 transform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
             }
             else if (movementDirection.x > 0)
@@ -45,10 +50,21 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && canDash) {
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        {
             StartCoroutine(Dash());
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("tam");
+    //    if (collision.gameObject.tag == "Obstacle")
+    //    {
+    //        transform.position = transform.position;
+    //        Debug.Log("tu");
+    //    }
+    //}
 
     private IEnumerator Dash()
     {
@@ -63,10 +79,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       if(!isDashing)
+        if (!isDashing)
         {
             rb.velocity = movementDirection.normalized * speed;
-
         }
     }
 

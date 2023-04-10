@@ -190,6 +190,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1023241085489779099, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 66764699}
+    - target: {fileID: 1023241085489779099, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
+      propertyPath: dashiingTime
+      value: 0.09
+      objectReference: {fileID: 0}
     - target: {fileID: 2455254486593468954, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -197,6 +205,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5941976425167282987, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
+--- !u!50 &66764699 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1023241085489779095, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
+  m_PrefabInstance: {fileID: 66764698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &178529787
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +305,7 @@ GameObject:
   - component: {fileID: 491839501}
   - component: {fileID: 491839500}
   - component: {fileID: 491839502}
+  - component: {fileID: 491839503}
   m_Layer: 0
   m_Name: Square (6)
   m_TagString: Obstacle
@@ -392,6 +406,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &491839503
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491839498}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &557287924
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +438,7 @@ GameObject:
   - component: {fileID: 557287927}
   - component: {fileID: 557287926}
   - component: {fileID: 557287928}
+  - component: {fileID: 557287929}
   m_Layer: 0
   m_Name: Square
   m_TagString: Obstacle
@@ -503,6 +539,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &557287929
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557287924}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &579016964
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +571,7 @@ GameObject:
   - component: {fileID: 579016967}
   - component: {fileID: 579016966}
   - component: {fileID: 579016968}
+  - component: {fileID: 579016969}
   m_Layer: 0
   m_Name: Square (9)
   m_TagString: Obstacle
@@ -614,6 +672,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &579016969
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579016964}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &664895901
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +704,7 @@ GameObject:
   - component: {fileID: 664895904}
   - component: {fileID: 664895903}
   - component: {fileID: 664895905}
+  - component: {fileID: 664895906}
   m_Layer: 0
   m_Name: Square (5)
   m_TagString: Obstacle
@@ -725,11 +805,58 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &664895906
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664895901}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &920818493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1023241085489779096, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
   m_PrefabInstance: {fileID: 66764698}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &920818500
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920818493}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0012955815, y: -0.30447853}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.36012033, y: 0.6710429}
+  m_EdgeRadius: 0
 --- !u!1 &971557730
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +868,7 @@ GameObject:
   - component: {fileID: 971557733}
   - component: {fileID: 971557732}
   - component: {fileID: 971557734}
+  - component: {fileID: 971557735}
   m_Layer: 0
   m_Name: Square (10)
   m_TagString: Obstacle
@@ -841,6 +969,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &971557735
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971557730}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1103466174
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +1001,7 @@ GameObject:
   - component: {fileID: 1103466177}
   - component: {fileID: 1103466176}
   - component: {fileID: 1103466178}
+  - component: {fileID: 1103466179}
   m_Layer: 0
   m_Name: Square (2)
   m_TagString: Obstacle
@@ -952,6 +1102,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1103466179
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103466174}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1291606479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -959,6 +1130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7444605410521789717, guid: b0ab9a85444c79f49a7f2f2a0f584c8d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2026419370152841656, guid: b0ab9a85444c79f49a7f2f2a0f584c8d, type: 3}
       propertyPath: m_Name
       value: enemy
@@ -1024,6 +1199,7 @@ GameObject:
   - component: {fileID: 1338422774}
   - component: {fileID: 1338422773}
   - component: {fileID: 1338422775}
+  - component: {fileID: 1338422776}
   m_Layer: 0
   m_Name: Square (8)
   m_TagString: Obstacle
@@ -1124,6 +1300,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1338422776
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338422771}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1536124277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1332,7 @@ GameObject:
   - component: {fileID: 1536124280}
   - component: {fileID: 1536124279}
   - component: {fileID: 1536124281}
+  - component: {fileID: 1536124282}
   m_Layer: 0
   m_Name: Square (3)
   m_TagString: Obstacle
@@ -1235,6 +1433,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1536124282
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536124277}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1571996087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1465,7 @@ GameObject:
   - component: {fileID: 1571996090}
   - component: {fileID: 1571996089}
   - component: {fileID: 1571996091}
+  - component: {fileID: 1571996092}
   m_Layer: 0
   m_Name: Square (4)
   m_TagString: Obstacle
@@ -1346,6 +1566,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1571996092
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571996087}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1654428896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,6 +1598,7 @@ GameObject:
   - component: {fileID: 1654428899}
   - component: {fileID: 1654428898}
   - component: {fileID: 1654428900}
+  - component: {fileID: 1654428901}
   m_Layer: 0
   m_Name: Square (7)
   m_TagString: Obstacle
@@ -1457,6 +1699,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1654428901
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654428896}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1782792818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1731,7 @@ GameObject:
   - component: {fileID: 1782792821}
   - component: {fileID: 1782792820}
   - component: {fileID: 1782792822}
+  - component: {fileID: 1782792823}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Obstacle
@@ -1568,6 +1832,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1782792823
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782792818}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2014399765
 GameObject:
   m_ObjectHideFlags: 0
