@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
@@ -20,10 +21,18 @@ public class Spell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
-        print(collision.gameObject.name);
+        if (collision.GameObject().tag == "Unit_enemy")
+        {
+            Destroy(gameObject);
+            print(collision.gameObject.name);
 
-        float dmg = Random.Range(minDamage, maxDamage);
-        collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
+            float dmg = Random.Range(minDamage, maxDamage);
+            collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
+        }
+        if(collision.GameObject().tag == "Obstacle")
+        {
+            Destroy(gameObject);
+            print(collision.gameObject.name);
+        }
     }
 }
