@@ -124,6 +124,7 @@ MonoBehaviour:
   speed: 4.5
   dashForce: 30
   dashiingTime: 0.09
+  Health: 50
 --- !u!50 &1023241085489779095
 Rigidbody2D:
   serializedVersion: 4

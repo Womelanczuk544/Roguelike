@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2592386836393130568}
   - component: {fileID: -7444605410521789717}
   m_Layer: 0
-  m_Name: enemy
-  m_TagString: Untagged
+  m_Name: Base_enemy_prefab
+  m_TagString: Unit_enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 1f;
     public float dashForce = 1f;
     public float dashiingTime = 2f;
+    public float health;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    public void takeDamage(float damage)
+    {
+        
+        health -= damage;
+        if (health < 0)
+        {
+            Debug.Log("dowódca nie ¿yjê");
+        }
+
+    }
     //private void OnCollisionEnter(Collision collision)
     //{
     //    Debug.Log("tam");

@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 movementDirection;
     public float speed = 1f;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
