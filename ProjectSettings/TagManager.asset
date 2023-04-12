@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Unit_enemy
+  - spawner
   layers:
   - Default
   - TransparentFX

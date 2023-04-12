@@ -29,7 +29,13 @@ public class Spell : MonoBehaviour
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
         }
-        if(collision.GameObject().tag == "Obstacle")
+        if (collision.GameObject().tag == "spawner")
+        {
+            Destroy(gameObject);
+            float dmg = Random.Range(minDamage, maxDamage);
+            collision.gameObject.GetComponent<spawner>().takeDamage(dmg);
+        }
+        if (collision.GameObject().tag == "Obstacle")
         {
             Destroy(gameObject);
             print(collision.gameObject.name);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
         health -= damage;
         if (health < 0)
         {
-            Debug.Log("dowódca nie ¿yjê");
+            Debug.Log("dowódca nie ¿yje");
         }
 
     }
@@ -77,6 +78,15 @@ public class PlayerController : MonoBehaviour
     //        Debug.Log("tu");
     //    }
     //}
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GameObject().tag == "Obstacle")
+        {
+            //it is called property, hoever it doesn't stop player
+            transform.position = transform.position;
+        }
+    }
 
     private IEnumerator Dash()
     {

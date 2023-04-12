@@ -22,7 +22,7 @@ public class SpellController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
 
-       /* animator.SetBool("isShooting", false);*/
+        animator.SetBool("isShooting", false);
         canShoot = true;
         
     }
