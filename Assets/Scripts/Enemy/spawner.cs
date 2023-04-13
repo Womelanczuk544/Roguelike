@@ -7,8 +7,11 @@ public class spawner : MonoBehaviour
     private float health;
     private float time;
 
+    public float spawnTimer;
     public GameObject enemyPrefab;
     public Transform spawnPosition;
+    public int maxSpanws;
+    //public int maxChildren; //optionaly todo
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +24,8 @@ public class spawner : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if(time > 6)
-        {
+        if(time > spawnTimer && EnemyController.count < maxSpanws)
+        {            
             Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
             time = 0;
         }

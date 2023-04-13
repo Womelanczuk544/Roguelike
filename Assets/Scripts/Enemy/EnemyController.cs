@@ -11,10 +11,11 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     private Vector3 movementDirection;
     public float speed = 1f;
-
+    public static int count = 0;
 
     void Start()
     {
+        count++;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -41,5 +42,10 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = movementDirection.normalized * speed;
+    }
+
+    private void OnDestroy()
+    {
+        count--;
     }
 }
