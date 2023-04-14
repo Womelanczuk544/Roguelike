@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - Unit_enemy
   - spawner
+  - Unit_enemy_schooting
   layers:
   - Default
   - TransparentFX

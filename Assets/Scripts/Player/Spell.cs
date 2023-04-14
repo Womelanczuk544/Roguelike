@@ -31,9 +31,17 @@ public class Spell : MonoBehaviour
         }
         if (collision.GameObject().tag == "spawner")
         {
+            Debug.Log("Weszlo jak w maslo, przeciwnik oberwal!");
             Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<spawner>().takeDamage(dmg);
+        }
+        if (collision.GameObject().tag == "Unit_enemy_schooting")
+        {
+            Debug.Log("Weszlo jak w maslo, przeciwnik oberwal!");
+            Destroy(gameObject);
+            float dmg = Random.Range(minDamage, maxDamage);
+            collision.gameObject.GetComponent<Schooting_enemy>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Obstacle")
         {
