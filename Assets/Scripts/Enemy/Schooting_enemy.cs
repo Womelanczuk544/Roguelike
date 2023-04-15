@@ -15,6 +15,7 @@ public class Schooting_enemy : MonoBehaviour
     public float frequency;
     public float minDmg;
     public float maxDmg;
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,12 @@ public class Schooting_enemy : MonoBehaviour
         Vector2 myPos = transform.position;
         Vector2 target = player.transform.position;
         Vector2 direction = (target - myPos).normalized;
+
         // transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); follow player
+
+        //float angle = Vector3.Angle(target, transform.forward);
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
         time += Time.deltaTime;
         if (time >= frequency)
         {            
@@ -46,5 +52,10 @@ public class Schooting_enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 }
