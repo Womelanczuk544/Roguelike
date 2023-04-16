@@ -8,6 +8,9 @@ public class Schooting_enemy : MonoBehaviour
 {
     private float time;
     private GameObject player;
+    private Vector2 myPos;
+    private Vector2 target;
+    private Vector2 direction;
 
     public GameObject projectile;
     public float projectileForce;
@@ -26,14 +29,9 @@ public class Schooting_enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 myPos = transform.position;
-        Vector2 target = player.transform.position;
-        Vector2 direction = (target - myPos).normalized;
-
-        // transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); follow player
-
-        //float angle = Vector3.Angle(target, transform.forward);
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        myPos = transform.position;
+        target = player.transform.position;
+        direction = (target - myPos).normalized;
 
         time += Time.deltaTime;
         if (time >= frequency)
@@ -56,6 +54,8 @@ public class Schooting_enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        Vector2 lookdir = target - rb.position;
+        float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = angle;
     }
 }
