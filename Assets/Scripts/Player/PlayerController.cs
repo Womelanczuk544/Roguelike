@@ -13,11 +13,15 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isDashing = false;
     private bool canDash = true;
+    private float maxHealth;
+    private float currentHealth;
+
 
     public float speed = 1f;
     public float dashForce = 1f;
     public float dashiingTime = 2f;
-    public float health;
+    public float baseHealth;
+    public HealthBar healthbar;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +29,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //rb.isKinematic = true;
+        currentHealth = baseHealth;
+        maxHealth = baseHealth;
+        healthbar.SetMaxHealth(baseHealth);
     }
 
     // Update is called once per frame
@@ -62,8 +68,9 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(float damage)
     {
         
-        health -= damage;
-        if (health < 0)
+        currentHealth -= damage;
+        healthbar.SetHealth(currentHealth);
+        if (currentHealth < 0)
         {
             Debug.Log("dowódca nie ¿yje");
         }
