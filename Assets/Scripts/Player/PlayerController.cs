@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float dashForce = 1f;
     public float dashiingTime = 2f;
     public float health;
+    private SpellController spellController;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spellController = GetComponent<SpellController>();
         //rb.isKinematic = true;
     }
 
@@ -34,29 +36,44 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
+        animator.SetFloat("walkDirectionX", (float)movementDirection.x);
+        animator.SetFloat("walkDirectionY", (float)movementDirection.y);
         if (movementDirection != Vector3.zero)
         {
             animator.SetBool("isRunning", true);
+            if(movementDirection.x != 0)
+            {
+                animator.SetBool("isRunningSideways", true);
+            }
+            else
+            {
+                animator.SetBool("isRunningSideways", false);
+            }
 
-            if (movementDirection.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
-            }
-            else if (movementDirection.x > 0)
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            }
         }
         else
         {
-            animator.SetBool("isRunning", false);
+            animator.SetBool("isRunningSideways", false);
+            StartCoroutine(ChangeIsRunning());
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartCoroutine(Dash());
         }
+
     }
+
+    IEnumerator ChangeIsRunning()
+    {
+        yield return new WaitForSeconds(0.05f);
+        if(movementDirection == Vector3.zero)
+        {
+            animator.SetBool("isRunning", false);
+            
+        }
+    }
+    
 
 
     public void takeDamage(float damage)
@@ -79,14 +96,14 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
     
-    private void OnTriggerEnter2D(Collider2D collision)
+/*    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GameObject().tag == "Obstacle")
         {
             //it is called property, hoever it doesn't stop player
             transform.position = transform.position;
         }
-    }
+    }*/
 
     private IEnumerator Dash()
     {
@@ -101,7 +118,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDashing)
+        if (!spellController.canShoot)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        if (!isDashing && spellController.canShoot)
         {
             rb.velocity = movementDirection.normalized * speed;
         }
