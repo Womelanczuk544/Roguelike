@@ -141,6 +141,10 @@ MonoBehaviour:
   projectile: {fileID: 7401451023324678205, guid: 008780c6304e4fb48b2f134a70c5e7d8, type: 3}
   projectileForce: 10
 --- !u!50 &2706908900564861108
+  currentHealth: 0
+  maxHealth: 0
+  baseHealth: 100
+--- !u!50 &1023241085489779095
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
