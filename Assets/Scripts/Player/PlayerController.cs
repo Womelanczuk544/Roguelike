@@ -23,11 +23,13 @@ public class PlayerController : MonoBehaviour
     public float health;
     private SpellController spellController;
     public float baseHealth;
-    public HealthBar healthbar;
+    public GameObject healthBar;
+    private HealthBar healthbarScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        healthbarScript = healthBar.GetComponent<HealthBar>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
     
             currentHealth = baseHealth;
         maxHealth = baseHealth;
-        healthbar.SetMaxHealth(baseHealth);
+        healthbarScript.SetMaxHealth(baseHealth);
     }
 
     // Update is called once per frame
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         
         currentHealth -= damage;
-        healthbar.SetHealth(currentHealth);
+        healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
             Debug.Log("dow�dca nie �yje");

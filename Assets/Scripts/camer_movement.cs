@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class camer_movement : MonoBehaviour
 {
-    public GameObject player;     
+    private GameObject player;     
 
 
     private Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         offset = transform.position - player.transform.position;
     }
 

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2706908900564861111}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 2706908900564861100}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4d702eb443547cf449a1f61003c05dda, type: 2}
+  m_Controller: {fileID: 9100000, guid: be46a4521a1144543993d0a5cc247278, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -125,7 +125,9 @@ MonoBehaviour:
   speed: 4.5
   dashForce: 30
   dashiingTime: 0.09
-  health: 0
+  health: 100
+  baseHealth: 10
+  healthBar: {fileID: 9158885278601138150, guid: d48033af678a0a543bd95b10277f4dfa, type: 3}
 --- !u!114 &2706908900564861096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,11 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 7401451023324678205, guid: 008780c6304e4fb48b2f134a70c5e7d8, type: 3}
   projectileForce: 10
+  canShoot: 1
 --- !u!50 &2706908900564861108
-  currentHealth: 0
-  maxHealth: 0
-  baseHealth: 100
---- !u!50 &1023241085489779095
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
