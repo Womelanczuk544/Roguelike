@@ -37,6 +37,7 @@ public class Schooting_enemy : MonoBehaviour
         if (time >= frequency)
         {            
             GameObject spell = Instantiate(projectile, myPos + direction, Quaternion.identity);
+            spell.GetComponent<Enemy_Spell>().setValues(minDmg, maxDmg);
             spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
             spell.transform.right = direction;
             time = 0;

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 1f;
     public float dashForce = 1f;
     public float dashiingTime = 2f;
-    public float health;
+    //public float health;
     private SpellController spellController;
     public float baseHealth;
     public GameObject healthBar;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         //rb.isKinematic = true;
 
     
-            currentHealth = baseHealth;
+        currentHealth = baseHealth;
         maxHealth = baseHealth;
         healthbarScript.SetMaxHealth(baseHealth);
     }
@@ -86,18 +86,26 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-
+    public void boostMaxHealth(float value, bool is_healed)
+    {        
+        maxHealth += value;
+        if (is_healed) currentHealth += value;
+        healthbarScript.SetMaxHealth(maxHealth);
+        healthbarScript.SetHealth(currentHealth);
+        Debug.Log(currentHealth);
+        Debug.Log(maxHealth);
+    }
 
     public void takeDamage(float damage)
     {
-        
         currentHealth -= damage;
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
-            Debug.Log("dow�dca nie �yje");
+            Debug.Log("dowodca nie zyje");
         }
-
+        if (currentHealth > maxHealth) 
+            currentHealth = maxHealth; //heal works as damage
     }
     //private void OnCollisionEnter(Collision collision)
     //{
