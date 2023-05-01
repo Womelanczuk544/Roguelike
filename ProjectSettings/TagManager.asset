@@ -8,6 +8,7 @@ TagManager:
   - Unit_enemy
   - spawner
   - Unit_enemy_schooting
+  - Item
   layers:
   - Default
   - TransparentFX

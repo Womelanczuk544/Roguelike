@@ -96,6 +96,16 @@ public class PlayerController : MonoBehaviour
         Debug.Log(maxHealth);
     }
 
+    public void changeSpeed(float value)
+    {
+        speed *= value;
+    }
+
+    public void changeDamage(float value)
+    {
+        //speed *= value;
+    }
+
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
