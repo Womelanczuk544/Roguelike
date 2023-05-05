@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SpellController : MonoBehaviour
 {
@@ -11,15 +12,26 @@ public class SpellController : MonoBehaviour
     public float projectileForce;
     private Animator animator;
     public bool canShoot = true;
+
+
     private Vector3 offset = new(0.233999997f, -0.224000007f, 0);
     private Rigidbody2D rb;
-
+    private GameObject basicProjectile;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        basicProjectile = projectile;
+    }
+    public void changeProjectile(GameObject newProjectile)
+    {
+        projectile = newProjectile;
     }
 
+    public void returnBasicProjectile()
+    {
+        projectile = basicProjectile;
+    }
 /*    IEnumerator AfterShooting()
     {
         yield return new WaitForSeconds(0.7f);
@@ -53,9 +65,12 @@ public class SpellController : MonoBehaviour
        
         GameObject spell = Instantiate(projectile, transform.position + offset, Quaternion.identity);
 
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        spell.GetComponent<Rigidbody2D>().rotation = angle;
+
         spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
 
-        spell.transform.right = direction;
+        //spell.transform.right = direction; hmmm
 
         
 

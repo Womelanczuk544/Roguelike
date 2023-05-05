@@ -15,16 +15,15 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private float maxHealth;
     private float currentHealth;
-
+    private float damageMultiplayer;
+    private SpellController spellController;
+    private HealthBar healthbarScript;
 
     public float speed = 1f;
     public float dashForce = 1f;
-    public float dashiingTime = 2f;
-    //public float health;
-    private SpellController spellController;
+    public float dashiingTime = 2f;    
     public float baseHealth;
-    public GameObject healthBar;
-    private HealthBar healthbarScript;
+    public GameObject healthBar;    
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour
         spellController = GetComponent<SpellController>();
         //rb.isKinematic = true;
 
-    
+        damageMultiplayer = 1;
         currentHealth = baseHealth;
         maxHealth = baseHealth;
         healthbarScript.SetMaxHealth(baseHealth);
@@ -103,7 +102,12 @@ public class PlayerController : MonoBehaviour
 
     public void changeDamage(float value)
     {
-        //speed *= value;
+        damageMultiplayer *= value;
+    }
+
+    public float getDamageMultiplayer()
+    {
+        return damageMultiplayer;
     }
 
     public void takeDamage(float damage)

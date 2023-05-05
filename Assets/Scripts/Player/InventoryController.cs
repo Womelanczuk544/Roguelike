@@ -15,8 +15,12 @@ public class InventoryController : MonoBehaviour
         inventory.Add(item);
         item.onAdd();
     }
-    void Update()
+    public void dropAllItems()
     {
-        
+        foreach (Item item in inventory)
+        {
+            item.onRemove();
+        }
+        inventory.Clear();
     }
 }

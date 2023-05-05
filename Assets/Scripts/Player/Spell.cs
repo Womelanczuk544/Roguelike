@@ -10,7 +10,9 @@ public class Spell : MonoBehaviour
     public float maxDamage;
     void Start()
     {
-        
+        float temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().getDamageMultiplayer();
+        minDamage *= temp;
+        maxDamage *= temp;
     }
 
     // Update is called once per frame
