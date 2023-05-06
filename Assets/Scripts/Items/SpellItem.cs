@@ -13,6 +13,8 @@ public class SpellItem : Item
     public override void onAdd()
     {
         player.GetComponent<SpellController>().changeProjectile(projectile);
+        if (!projectile.GetComponent<Spell>().isMele)
+            player.GetComponent<SpellController>().changeAttackType(false);
     }
     public override void onRemove()
     {
