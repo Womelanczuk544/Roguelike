@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8510060207561016568}
   - component: {fileID: 8675719568507703613}
   - component: {fileID: 6378580283044689668}
-  - component: {fileID: 7824744511108149832}
+  - component: {fileID: 2708121019841485808}
   m_Layer: 0
   m_Name: Enemy_triangle
   m_TagString: Unit_enemy
@@ -149,7 +149,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7824744511108149832
+--- !u!114 &2708121019841485808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDamage: 10
-  maxDamage: 30
+  maxDamage: 20

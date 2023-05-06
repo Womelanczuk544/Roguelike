@@ -77,7 +77,7 @@ public class SpellController : MonoBehaviour
 
         if (meleAttack==true)
         {
-            spell.GetComponent<Spell>().meleAttack(0.5f);
+            spell.GetComponent<Spell>().meleAttack(0.3f);
             spell.GetComponent<Rigidbody2D>().velocity = direction * 0.3f;
         }
         else

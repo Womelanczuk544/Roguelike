@@ -11,6 +11,8 @@ public class spawner : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform spawnPosition;
     public int maxSpanws;
+    public float minDamage;
+    public float maxDamage;
     //public int maxChildren; //optionaly todo
 
     // Start is called before the first frame update
@@ -26,7 +28,8 @@ public class spawner : MonoBehaviour
         time += Time.deltaTime;
         if(time > spawnTimer && EnemyController.count < maxSpanws)
         {            
-            Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
+            GameObject baseEnemy = Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
+            baseEnemy.GetComponent<BaseEnemyDmg>().setDmg(minDamage, maxDamage);
             time = 0;
         }
     }
