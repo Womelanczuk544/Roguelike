@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.IO;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
@@ -20,9 +21,12 @@ public class Schooting_enemy : MonoBehaviour
     public float maxDmg;
     public Rigidbody2D rb;
 
+    public static int counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        counter++;
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -58,5 +62,9 @@ public class Schooting_enemy : MonoBehaviour
         Vector2 lookdir = target - rb.position;
         float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+    }
+    private void OnDestroy()
+    {
+        counter--;
     }
 }

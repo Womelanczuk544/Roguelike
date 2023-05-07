@@ -7,8 +7,7 @@ using static UnityEditor.PlayerSettings;
 
 public class DoorManager : MonoBehaviour
 {    
-    private Vector3 yOffset = new Vector3(0, 12.25f, 0);
-    private Vector3 yCorrect = new Vector3(0, 2.75f, 0);
+    private Vector3 yOffset = new Vector3(0, 11, 0);
     private Vector3 xOffset = new Vector3(11, 0, 0);
     private Quaternion rot90 = Quaternion.Euler(new Vector3(0, 0, 90f));
 
@@ -26,10 +25,6 @@ public class DoorManager : MonoBehaviour
     public GameObject temporaryWallPrefab;
     public Transform pos;
 
-    private void Start()
-    {
-        roomEnter(true, true, false, true); //Narazie tu, potem gdzies indziej
-    }
     public void roomEnter(bool left, bool right, bool up, bool down)
     {
         upDoor = up;
@@ -53,9 +48,9 @@ public class DoorManager : MonoBehaviour
         else
             upDoorObj = Instantiate(temporaryWallPrefab, pos.position + yOffset, rot90);
         if(downDoor==true)
-            downDoorObj = Instantiate(wallPrefab, pos.position - yOffset + yCorrect, rot90);
+            downDoorObj = Instantiate(wallPrefab, pos.position - yOffset, rot90);
         else
-            downDoorObj = Instantiate(temporaryWallPrefab, pos.position - yOffset + yCorrect, rot90);
+            downDoorObj = Instantiate(temporaryWallPrefab, pos.position - yOffset, rot90);
     }
     public void open()
     {

@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public float health = 100;
+{    
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private GameObject player;
     private Vector3 movementDirection;
+
     public float speed = 1f;
-    public static int count = 0;
+    public float health = 100;
+
+    public static int counter = 0;
 
     void Start()
     {
-        count++;
+        counter++;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -46,6 +47,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        count--;
+        counter--;
     }
 }
