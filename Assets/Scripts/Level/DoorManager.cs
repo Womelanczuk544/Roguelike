@@ -54,6 +54,7 @@ public class DoorManager : MonoBehaviour
     }
     public void open()
     {
+        Debug.Log("Otwarto");
         if(leftDoor==false)
             Destroy(leftDoorObj);
         if (rightDoor == false)
