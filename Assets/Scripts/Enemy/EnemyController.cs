@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject player;
     private Vector3 movementDirection;
+    private Animator animator;
 
     public float speed = 1f;
     public float health = 100;
@@ -18,6 +19,7 @@ public class EnemyController : MonoBehaviour
     {
         counter++;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -28,16 +30,25 @@ public class EnemyController : MonoBehaviour
         spriteRenderer.sortingOrder = -(int)transform.position.y;
 
         movementDirection = player.transform.position - transform.position; 
+
+
     }
 
     public void takeDamage(float damage)
     {
         health -= damage;
-        if(health < 0)
+        if (health <= 0)
         {
-            Destroy(gameObject);
+
+            StartCoroutine(Die());
         }
-        
+    }
+
+    IEnumerator Die()
+    {
+        animator.SetBool("isAlive", false);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

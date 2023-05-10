@@ -7,6 +7,7 @@ public class BaseEnemyDmg: MonoBehaviour
 {
     public float minDamage;
     public float maxDamage;
+
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.GameObject().tag == "Player")

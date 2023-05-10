@@ -87,7 +87,7 @@ public class SpellController : MonoBehaviour
 
         
 
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.5f);
         canShoot = true;
         animator.SetBool("isShooting", false);
     }
