@@ -32,7 +32,7 @@ public class DoorManager : MonoBehaviour
         leftDoor = left;
         rightDoor = right;
         close();
-    }
+        }
     public void close()
     {
         if(leftDoor==true)

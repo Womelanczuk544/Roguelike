@@ -8,10 +8,19 @@ public class PlayerObservator : MonoBehaviour
 
     public EnemyGenerator enemyGenerator;
     public DoorManager manager;
+    private GenerateLabirynt generate;
+    private int playerPosOnMapX, playerPosOnMapY;
+    string currRoom;
     void Start()
     {
+
+        generate = GetComponent<GenerateLabirynt>();
+        playerPosOnMapX = generate.startingPosX;
+        playerPosOnMapY = generate.startingPosY;
         player = GameObject.FindGameObjectWithTag("Player");
-        manager.roomEnter(true, false, true, true); //true sciana
+
+        currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
+        manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //true sciana
                                                     //przejscie
     }
 
@@ -20,33 +29,65 @@ public class PlayerObservator : MonoBehaviour
     {
         if (player.GetComponent<Transform>().position.x >= 12)
         {
+
+            currRoom = currRoom.Remove(currRoom.Length - 1);
+            currRoom += '1';
+            generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
+            playerPosOnMapX++;
+            currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(-22, 0, 0));
-            
-            manager.roomEnter(false, false, true, true); //<- TU DODAC LABIRYNT (NP)
+            if (currRoom[4] == '0')
+            {
+                enemyGenerator.generate();
+            }
+            manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //<- TU DODAC LABIRYNT (NP)
 
-            enemyGenerator.generate();
         }
         if (player.GetComponent<Transform>().position.x <= -12)
         {
+            currRoom = currRoom.Remove(currRoom.Length - 1);
+            currRoom += '1';
+            generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
+            playerPosOnMapX--;
+            currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(22, 0, 0));
-            enemyGenerator.generate();
-            manager.roomEnter(true, true, true, true);
+            if (currRoom[4] == '0')
+            {
+                enemyGenerator.generate();
+            }
+            manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
         }
         if (player.GetComponent<Transform>().position.y >= 12)
         {
+            currRoom = currRoom.Remove(currRoom.Length - 1);
+             currRoom += '1';
+            generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
+            playerPosOnMapY++;
+            currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, -22, 0));
-            enemyGenerator.generate();
-            manager.roomEnter(true, true, true, true);
+            if (currRoom[4] == '0')
+            {
+                enemyGenerator.generate();
+            }
+            manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
         }
         if (player.GetComponent<Transform>().position.y <= -12)
         {
+            currRoom = currRoom.Remove(currRoom.Length - 1);
+            currRoom += '1';
+            generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
+            playerPosOnMapY--;
+            currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, 22, 0));
-            enemyGenerator.generate();
-            manager.roomEnter(true, true, true, true);
+            if (currRoom[4] == '0')
+            {
+                enemyGenerator.generate();
+            };
+            manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
         }
     }
 }
