@@ -20,7 +20,7 @@ public class GenerateLabirynt : MonoBehaviour
     private string[] options;
 
 
-    public const int numberOfRooms = 6;// musi byc parzyscie bo sie zjebie
+    public const int numberOfRooms = 10;// musi byc parzyscie bo sie zjebie
     const int mapMaxSize = numberOfRooms * 2;
     int currNumberOfRooms = 0;
     bool canNextOneAdd = true;
@@ -42,7 +42,7 @@ public class GenerateLabirynt : MonoBehaviour
         }
 
         StartCoroutine(AddRooms(startingPosX, startingPosY, 10));
-
+        print("zx");
     }
 
 

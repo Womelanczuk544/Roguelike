@@ -19,9 +19,21 @@ public class PlayerObservator : MonoBehaviour
         playerPosOnMapY = generate.startingPosY;
         player = GameObject.FindGameObjectWithTag("Player");
 
+        StartCoroutine(generateFirstRoom());
+      /*  currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
+        manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //true sciana*/
+                                                    //przejscie
+    }
+
+    IEnumerator generateFirstRoom()
+    {
+        while (generate.numOfRoomsDone <= 0)
+        {
+            yield return null;
+        }
         currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
         manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //true sciana
-                                                    //przejscie
+
     }
 
     // Update is called once per frame
