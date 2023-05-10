@@ -36,23 +36,27 @@ public class Spell : MonoBehaviour
     {
         if (collision.GameObject().tag == "Unit_enemy")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "spawner")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<spawner>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Unit_enemy_schooting")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<Schooting_enemy>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Obstacle")
+        {
+            //Destroy(gameObject);
+        }
+        if(isMele == false)
         {
             Destroy(gameObject);
         }
