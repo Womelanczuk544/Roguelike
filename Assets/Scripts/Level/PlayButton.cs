@@ -15,5 +15,6 @@ public class PlayButton : MonoBehaviour
     public void QuitApp()
     {
         Application.Quit();
+        Debug.Log("ciœniesz mnie chopie zara wyleza");
     }
 }
