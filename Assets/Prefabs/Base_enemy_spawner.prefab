@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4564801374919346030}
   - component: {fileID: 4564801374919346031}
   - component: {fileID: 4564801374919345936}
+  - component: {fileID: 1359711873437013336}
   m_Layer: 0
   m_Name: Base_enemy_spawner
   m_TagString: spawner
@@ -132,12 +133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  spawnTimer: 4
+  spawnTimer: 5
   enemyPrefab: {fileID: 3936304305723331706, guid: 532d4a39d532c7345a5c321fef6e448f, type: 3}
   spawnPosition: {fileID: 4564801374242052876}
-  maxSpanws: 4
+  maxSpanws: 2
   minDamage: 0
-  maxDamage: 0
+  maxDamage: 10
 --- !u!50 &4564801374919346031
 Rigidbody2D:
   serializedVersion: 4
@@ -175,3 +176,16 @@ CircleCollider2D:
   m_Offset: {x: 0.10584831, y: 0.042338766}
   serializedVersion: 2
   m_Radius: 3.484877
+--- !u!114 &1359711873437013336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564801374919345937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fe787ec588dfa4bae4d85e90c2c446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4564801374919346031}

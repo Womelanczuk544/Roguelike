@@ -27,4 +27,8 @@ public class EnemyObservator : MonoBehaviour
             once = true;
         }
     }
+    public void resetOnce()
+    {
+        once = true;
+    }
 }
