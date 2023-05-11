@@ -42,7 +42,6 @@ public class GenerateLabirynt : MonoBehaviour
         }
 
         StartCoroutine(AddRooms(startingPosX, startingPosY, 10));
-        print("zx");
     }
 
 
@@ -58,6 +57,10 @@ public class GenerateLabirynt : MonoBehaviour
         {
             currNumberOfRooms++;
             FindCorrectTiles(x, y, false);
+            if (finishedMap[x, y][(int)Directions.RIGHT] == '1' && previousDir != (int)Directions.RIGHT && finishedMap[x + 1, y] == null)
+            {
+                StartCoroutine((AddRooms(x + 1, y, (int)Directions.LEFT)));
+            }
             if (finishedMap[x, y][(int)Directions.LEFT] == '1' && previousDir != (int)Directions.LEFT && finishedMap[x - 1, y] == null)
             {
                 StartCoroutine((AddRooms(x - 1, y, (int)Directions.RIGHT)));
@@ -65,10 +68,6 @@ public class GenerateLabirynt : MonoBehaviour
             if (finishedMap[x, y][(int)Directions.UP] == '1' && previousDir != (int)Directions.UP && finishedMap[x, y + 1] == null)
             {
                 StartCoroutine((AddRooms(x, y + 1, (int)Directions.DOWN)));
-            }
-            if (finishedMap[x, y][(int)Directions.RIGHT] == '1' && previousDir != (int)Directions.RIGHT && finishedMap[x + 1, y] == null)
-            {
-                StartCoroutine((AddRooms(x + 1, y, (int)Directions.LEFT)));
             }
             if (finishedMap[x, y][(int)Directions.DOWN] == '1' && previousDir != (int)Directions.DOWN && finishedMap[x, y - 1] == null)
             {
@@ -90,17 +89,6 @@ public class GenerateLabirynt : MonoBehaviour
         options = tiles;
         if (finishedMap[x, y] != null) { return; }
 
-        if (finishedMap[x - 1, y] != null)
-        {
-            if (finishedMap[x - 1, y][(int)Directions.RIGHT] == '1')
-            {
-                RemoveFromOptions((int)Directions.LEFT, '0');
-            }
-            else
-            {
-                RemoveFromOptions((int)Directions.LEFT, '1');
-            }
-        }
         if (finishedMap[x + 1, y] != null)
         {
             if (finishedMap[x + 1, y][(int)Directions.LEFT] == '1')
@@ -110,6 +98,17 @@ public class GenerateLabirynt : MonoBehaviour
             else
             {
                 RemoveFromOptions((int)Directions.RIGHT, '1');
+            }
+        }
+        if (finishedMap[x - 1, y] != null)
+        {
+            if (finishedMap[x - 1, y][(int)Directions.RIGHT] == '1')
+            {
+                RemoveFromOptions((int)Directions.LEFT, '0');
+            }
+            else
+            {
+                RemoveFromOptions((int)Directions.LEFT, '1');
             }
         }
         if (finishedMap[x, y - 1] != null)
