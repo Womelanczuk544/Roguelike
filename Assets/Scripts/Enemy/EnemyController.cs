@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
-{    
+{
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private GameObject player;
@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
 
     public float speed = 1f;
     public float health = 100;
-
+    private bool isAlive = true;
     public static int counter = 0;
 
     void Start()
@@ -29,7 +29,8 @@ public class EnemyController : MonoBehaviour
     {
         spriteRenderer.sortingOrder = -(int)transform.position.y;
 
-        movementDirection = player.transform.position - transform.position; 
+            movementDirection = player.transform.position - transform.position;
+        
 
 
     }
@@ -39,7 +40,6 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-
             StartCoroutine(Die());
         }
     }
@@ -47,13 +47,22 @@ public class EnemyController : MonoBehaviour
     IEnumerator Die()
     {
         animator.SetBool("isAlive", false);
+        isAlive = false;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = movementDirection.normalized * speed;
+        if (isAlive)
+        {
+
+            rb.velocity = movementDirection.normalized * speed;
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     private void OnDestroy()

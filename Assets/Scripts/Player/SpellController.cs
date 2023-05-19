@@ -70,10 +70,9 @@ public class SpellController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
        
-        GameObject spell = Instantiate(projectile, transform.position + offset, Quaternion.identity);
-
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        spell.GetComponent<Rigidbody2D>().rotation = angle;
+        GameObject spell = Instantiate(projectile, transform.position + offset, Quaternion.Euler(0f, 0f, angle));
+
 
         if (meleAttack==true)
         {

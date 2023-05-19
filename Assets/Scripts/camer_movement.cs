@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class camer_movement : MonoBehaviour
 {
-    private GameObject player;     
+    private GameObject player;
+
 
 
     private Vector3 offset;
@@ -19,6 +20,8 @@ public class camer_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + offset;
+
+            transform.position = player.transform.position + offset;
+        
     }
 }
