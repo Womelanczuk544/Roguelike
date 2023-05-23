@@ -13,18 +13,21 @@ public class SpellController : MonoBehaviour
     private Animator animator;
     public bool canShoot = true;
     public bool meleAttack;
+    public GameObject hands;
+    public GameObject gun;
 
-    //private Vector3 offset = new(0.233999997f, -0.224000007f, 0);
     private Vector3 offset = new(0, 0, 0);
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
     private GameObject basicProjectile;
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         basicProjectile = projectile;
         meleAttack = true;
+       
     }
+
     public void changeProjectile(GameObject newProjectile)
     {
         projectile = newProjectile;
@@ -39,14 +42,6 @@ public class SpellController : MonoBehaviour
     {
         meleAttack = type;
     }
-/*    IEnumerator AfterShooting()
-    {
-        yield return new WaitForSeconds(0.7f);
-
-        animator.SetBool("isShooting", false);
-        canShoot = true;
-        
-    }*/
 
     void Update() {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,7 +51,8 @@ public class SpellController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canShoot)
         {
             animator.SetFloat("mouseX", direction.x);
-            animator.SetFloat("mouseY", direction.y);
+            //animator.SetFloat("mouseY", direction.y);
+
             StartCoroutine( Shoot(direction));
         }
    
@@ -64,20 +60,18 @@ public class SpellController : MonoBehaviour
 
     IEnumerator Shoot(Vector2 direction)
     {
-        animator.SetBool("isShooting", true);
+        //animator.SetBool("isShooting", true);
         canShoot = false;
-
-        yield return new WaitForSeconds(0.5f);
-
+        offset = gun.transform.localPosition;
        
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        GameObject spell = Instantiate(projectile, transform.position + offset, Quaternion.Euler(0f, 0f, angle));
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GameObject spell = Instantiate(projectile, gun.transform.position, Quaternion.Euler(0f, 0f, angle));
 
 
         if (meleAttack==true)
         {
             spell.GetComponent<Spell>().meleAttack(0.3f);
-            spell.GetComponent<Rigidbody2D>().velocity = direction * 0.3f;
+            spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
         }
         else
             spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
@@ -86,9 +80,10 @@ public class SpellController : MonoBehaviour
 
         
 
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.5f);
+        //yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.5f);
         canShoot = true;
-        animator.SetBool("isShooting", false);
+        // animator.SetBool("isShooting", false);
+        yield return new WaitForSeconds(0.5f);
     }
 
 }

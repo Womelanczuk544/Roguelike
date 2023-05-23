@@ -21,9 +21,10 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 1f;
     public float dashForce = 1f;
-    public float dashiingTime = 2f;    
+    public float dashiingTime = 2f;
     public float baseHealth;
-    public GameObject healthBar;    
+    public GameObject healthBar;
+    public GameObject gun;
 
     // Start is called before the first frame update
     void Start()
@@ -47,19 +48,39 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
-        animator.SetFloat("walkDirectionX", (float)movementDirection.x);
-        animator.SetFloat("walkDirectionY", (float)movementDirection.y);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 myPos = transform.position;
+        Vector2 direction = (mousePos - myPos).normalized;
+        if (direction.x < 0)
+        {
+            //this.spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-5, 5, 5);
+            gun.transform.localScale = new Vector3(-1, -1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(5, 5, 5);
+            gun.transform.localScale = new Vector3(1, 1, 1);
+        }
+
         if (movementDirection != Vector3.zero)
         {
             animator.SetBool("isRunning", true);
-            if(movementDirection.x != 0)
+
+
+
+
+            if (movementDirection.x > 0 && direction.x > 0 || movementDirection.x < 0 && direction.x < 0)
             {
-                animator.SetBool("isRunningSideways", true);
+                animator.SetBool("lookingWhereGoing", true);
             }
             else
             {
-                animator.SetBool("isRunningSideways", false);
+                animator.SetBool("lookingWhereGoing", false);
             }
+
+
+
 
         }
         else
@@ -78,15 +99,15 @@ public class PlayerController : MonoBehaviour
     IEnumerator ChangeIsRunning()
     {
         yield return new WaitForSeconds(0.05f);
-        if(movementDirection == Vector3.zero)
+        if (movementDirection == Vector3.zero)
         {
             animator.SetBool("isRunning", false);
-            
+
         }
     }
-    
+
     public void boostMaxHealth(float value, bool is_healed)
-    {        
+    {
         maxHealth += value;
         if (is_healed) currentHealth += value;
         healthbarScript.SetMaxHealth(maxHealth);
@@ -118,7 +139,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("dowodca nie zyje");
         }
-        if (currentHealth > maxHealth) 
+        if (currentHealth > maxHealth)
             currentHealth = maxHealth; //heal works as damage
     }
     //private void OnCollisionEnter(Collision collision)
@@ -130,15 +151,15 @@ public class PlayerController : MonoBehaviour
     //        Debug.Log("tu");
     //    }
     //}
-    
-/*    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.GameObject().tag == "Obstacle")
+
+    /*    private void OnTriggerEnter2D(Collider2D collision)
         {
-            //it is called property, hoever it doesn't stop player
-            transform.position = transform.position;
-        }
-    }*/
+            if (collision.GameObject().tag == "Obstacle")
+            {
+                //it is called property, hoever it doesn't stop player
+                transform.position = transform.position;
+            }
+        }*/
 
     private IEnumerator Dash()
     {
@@ -153,14 +174,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!spellController.canShoot)
-        {
-            rb.velocity = Vector2.zero;
-        }
-        if (!isDashing && spellController.canShoot)
-        {
-            rb.velocity = movementDirection.normalized * speed;
-        }
+
+        rb.velocity = movementDirection.normalized * speed;
+
     }
 
 }

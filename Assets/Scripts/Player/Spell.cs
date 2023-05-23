@@ -7,7 +7,7 @@ using static UnityEditor.PlayerSettings;
 public class Spell : MonoBehaviour
 {
     private float time;
-    private float timeToLive = 10;
+    private float timeToLive = 100;
 
     public float minDamage;
     public float maxDamage;
@@ -22,11 +22,6 @@ public class Spell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= timeToLive)
-        {
-            Destroy(gameObject);
-        }
     }
     public void meleAttack(float ttl)
     {
@@ -34,6 +29,7 @@ public class Spell : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.GameObject().tag == "Player") return;
         if (collision.GameObject().tag == "Unit_enemy")
         {
             //Destroy(gameObject);
