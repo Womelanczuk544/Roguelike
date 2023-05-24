@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spriteRenderer.sortingOrder = -(int)transform.position.y;
+        //spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isRunningSideways", false);
             StartCoroutine(ChangeIsRunning());
         }
 
@@ -140,31 +139,12 @@ public class PlayerController : MonoBehaviour
         if (currentHealth > maxHealth)
             currentHealth = maxHealth; //heal works as damage
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("tam");
-    //    if (collision.gameObject.tag == "Obstacle")
-    //    {
-    //        transform.position = transform.position;
-    //        Debug.Log("tu");
-    //    }
-    //}
-
-    /*    private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.GameObject().tag == "Obstacle")
-            {
-                //it is called property, hoever it doesn't stop player
-                transform.position = transform.position;
-            }
-        }*/
 
     private IEnumerator Dash()
     {
         canDash = false;
         isDashing = true;
         rb.velocity = movementDirection.normalized * dashForce;
-        /* rb.AddForce(movementDirection.normalized * dashForce, ForceMode2D.Impulse);*/
         yield return new WaitForSeconds(dashiingTime);
         canDash = true;
         isDashing = false;
@@ -174,7 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDashing)
         {
-        rb.velocity = movementDirection.normalized * speed;
+            rb.velocity = movementDirection.normalized * speed;
 
         }
 
