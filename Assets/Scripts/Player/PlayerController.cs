@@ -79,9 +79,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("lookingWhereGoing", false);
             }
 
-
-
-
         }
         else
         {
