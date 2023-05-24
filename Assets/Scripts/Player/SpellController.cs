@@ -50,7 +50,7 @@ public class SpellController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            animator.SetFloat("mouseX", direction.x);
+          /*  animator.SetFloat("mouseX", direction.x);*/
             //animator.SetFloat("mouseY", direction.y);
 
             StartCoroutine( Shoot(direction));
