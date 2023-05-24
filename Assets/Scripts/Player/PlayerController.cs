@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
-            Debug.Log("dowodca nie zyje");
+            SceneManager.LoadScene("first_location");
         }
         if (currentHealth > maxHealth)
             currentHealth = maxHealth; //heal works as damage

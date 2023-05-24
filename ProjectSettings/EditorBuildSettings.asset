@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Andrzej_scene.unity
     guid: 8fe637daea89fff4f80c5a24845d5f57
+  - enabled: 1
+    path: Assets/Scenes/first_location.unity
+    guid: c2042eea70514094187ddd5b3843afc6
   m_configObjects: {}
