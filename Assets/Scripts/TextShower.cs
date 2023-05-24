@@ -40,7 +40,7 @@ public class TextShower : MonoBehaviour
         {
             if(Input.GetKeyUp(KeyCode.E)) {
 
-                SceneManager.LoadScene("Andrzej_scene");
+                SceneManager.LoadScene("test scene");
             }
         }
         if (Input.GetKeyUp(KeyCode.Escape))

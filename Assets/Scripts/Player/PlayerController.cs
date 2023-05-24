@@ -172,8 +172,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (!isDashing)
+        {
         rb.velocity = movementDirection.normalized * speed;
+
+        }
+
 
     }
 
