@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
-            SceneManager.LoadScene("first_location");
+            SceneManager.LoadScene("Game over");
         }
         if (currentHealth > maxHealth)
             currentHealth = maxHealth; //heal works as damage
