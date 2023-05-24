@@ -262,7 +262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Continue
 --- !u!222 &186757025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 1435199059}
   - component: {fileID: 1435199058}
   m_Layer: 5
-  m_Name: Contin(Legacy)
+  m_Name: Continue (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

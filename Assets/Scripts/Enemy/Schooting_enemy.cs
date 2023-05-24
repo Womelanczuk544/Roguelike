@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -12,6 +13,8 @@ public class Schooting_enemy : MonoBehaviour
     private Vector2 myPos;
     private Vector2 target;
     private Vector2 direction;
+    private Vector3 movementDirection;
+    private bool isAlive = true;
 
     public GameObject projectile;
     public float projectileForce;
@@ -20,6 +23,8 @@ public class Schooting_enemy : MonoBehaviour
     public float minDmg;
     public float maxDmg;
     public Rigidbody2D rb;
+    public float speed = 1f;
+    public float radius = 10f;
 
     public static int counter = 0;
 
@@ -36,6 +41,7 @@ public class Schooting_enemy : MonoBehaviour
         myPos = transform.position;
         target = player.transform.position;
         direction = (target - myPos).normalized;
+        movementDirection = player.transform.position - transform.position;
 
         time += Time.deltaTime;
         if (time >= frequency)
@@ -59,9 +65,22 @@ public class Schooting_enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 lookdir = target - rb.position;
-        float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        if (radius < Math.Sqrt(Math.Pow(myPos.x - player.transform.position.x,2)+Math.Pow(myPos.y - player.transform.position.y, 2)))
+        {
+            if (isAlive)
+            {
+
+                rb.velocity = movementDirection.normalized * speed;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
     private void OnDestroy()
     {

@@ -9,10 +9,10 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     private Vector3 movementDirection;
     private Animator animator;
+    private bool isAlive = true;
 
     public float speed = 1f;
     public float health = 100;
-    private bool isAlive = true;
     public static int counter = 0;
 
     void Start()
@@ -28,11 +28,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         spriteRenderer.sortingOrder = -(int)transform.position.y;
-
-            movementDirection = player.transform.position - transform.position;
-        
-
-
+        movementDirection = player.transform.position - transform.position;
     }
 
     public void takeDamage(float damage)
