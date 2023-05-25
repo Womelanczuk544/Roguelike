@@ -7,8 +7,8 @@ using static UnityEditor.PlayerSettings;
 
 public class DoorManager : MonoBehaviour
 {    
-    private Vector3 yOffset = new Vector3(0, 11.42f, 0);
-    private Vector3 xOffset = new Vector3(11.42f, 0.14f, 0);
+    private Vector3 yOffset = new Vector3(0, 11, 0);
+    private Vector3 xOffset = new Vector3(11, 0, 0);
     private Quaternion rot90 = Quaternion.Euler(new Vector3(0, 0, 90f));
 
     private bool upDoor;

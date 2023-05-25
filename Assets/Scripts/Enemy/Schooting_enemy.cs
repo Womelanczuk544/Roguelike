@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class Schooting_enemy : MonoBehaviour
+public class Schooting_enemy : Enemy
 {
     private float time;
     private GameObject player;
@@ -26,12 +26,10 @@ public class Schooting_enemy : MonoBehaviour
     public float speed = 1f;
     public float radius = 10f;
 
-    public static int counter = 0;
-
     // Start is called before the first frame update
     void Start()
     {
-        counter++;
+        onCreate();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -81,9 +79,5 @@ public class Schooting_enemy : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
-    }
-    private void OnDestroy()
-    {
-        counter--;
     }
 }
