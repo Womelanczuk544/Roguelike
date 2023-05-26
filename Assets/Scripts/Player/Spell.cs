@@ -22,8 +22,8 @@ public class Spell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position.x > 12 || gameObject.transform.position.x < -12 ||
-            gameObject.transform.position.y > 12 || gameObject.transform.position.y < -12)
+        if (gameObject.transform.position.x > 18 || gameObject.transform.position.x < -19 ||
+            gameObject.transform.position.y > 11 || gameObject.transform.position.y < -11)
             Destroy(gameObject);
     }
     public void meleAttack(float ttl)
