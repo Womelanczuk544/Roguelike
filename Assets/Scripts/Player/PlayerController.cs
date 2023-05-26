@@ -69,8 +69,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRunning", true);
 
 
-
-
             if (movementDirection.x > 0 && direction.x > 0 || movementDirection.x < 0 && direction.x < 0)
             {
                 animator.SetBool("lookingWhereGoing", true);

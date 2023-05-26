@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 movementDirection;
     private Animator animator;
     private bool isAlive = true;
+    private BoxCollider2D boxCollider;
 
     public float speed = 1f;
     public float health = 100;
@@ -22,6 +23,7 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -42,8 +44,9 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Die()
     {
-        animator.SetBool("isAlive", false);
         isAlive = false;
+        animator.SetBool("isAlive", false);
+        boxCollider.enabled = false;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
     }
