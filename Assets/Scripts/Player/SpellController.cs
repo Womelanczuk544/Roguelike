@@ -15,6 +15,7 @@ public class SpellController : MonoBehaviour
     public bool meleAttack;
     public GameObject hands;
     public GameObject gun;
+    public AudioSource shootSound;
 
     private Vector3 offset = new(0, 0, 0);
     //private Rigidbody2D rb;
@@ -48,11 +49,8 @@ public class SpellController : MonoBehaviour
         Vector2 myPos = transform.position + offset;
         Vector2 direction = (mousePos - myPos).normalized;
         
-        if (Input.GetMouseButtonDown(0) && canShoot)
+        if (Input.GetMouseButton(0) && canShoot)
         {
-          /*  animator.SetFloat("mouseX", direction.x);*/
-            //animator.SetFloat("mouseY", direction.y);
-
             StartCoroutine( Shoot(direction));
         }
    
@@ -66,7 +64,8 @@ public class SpellController : MonoBehaviour
        
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject spell = Instantiate(projectile, gun.transform.position, Quaternion.Euler(0f, 0f, angle));
-
+        shootSound.Play();
+        
 
         if (meleAttack==true)
         {
@@ -78,12 +77,9 @@ public class SpellController : MonoBehaviour
 
         //spell.transform.right = direction; hmmm
 
-        
-
-        //yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.5f);
-        canShoot = true;
-        // animator.SetBool("isShooting", false);
         yield return new WaitForSeconds(0.5f);
+        canShoot = true;
+
     }
 
 }

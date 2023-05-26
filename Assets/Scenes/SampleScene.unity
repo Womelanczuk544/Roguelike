@@ -205,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724673399
 GameObject:
@@ -272,7 +272,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,27 +340,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &1714765157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1023241085489779096, guid: 34b8aa9e0b9170248979e6c7556724b9, type: 3}
-  m_PrefabInstance: {fileID: 1023241087063502077}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1714765163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714765157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab2f204ab2395e4b8324c1041227a5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 7401451023324678205, guid: 008780c6304e4fb48b2f134a70c5e7d8, type: 3}
-  minDamage: 10
-  maxDamage: 20
-  projectileForce: 3.91
 --- !u!1001 &1023241087063502077
 PrefabInstance:
   m_ObjectHideFlags: 0
