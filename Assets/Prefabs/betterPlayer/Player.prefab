@@ -207,6 +207,7 @@ MonoBehaviour:
   meleAttack: 0
   hands: {fileID: 8218059672261416457}
   gun: {fileID: 8218059672981991519}
+  shootSound: {fileID: 0}
 --- !u!1 &8218059672261416457
 GameObject:
   m_ObjectHideFlags: 0
