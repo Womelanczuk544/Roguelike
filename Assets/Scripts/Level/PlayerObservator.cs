@@ -10,7 +10,7 @@ public class PlayerObservator : MonoBehaviour
     public EnemyGenerator enemyGenerator;
     public DoorManager manager;
     private GenerateLabirynt generate;
-    private int playerPosOnMapX, playerPosOnMapY;
+    public int playerPosOnMapX, playerPosOnMapY;
     string currRoom;
     void Start()
     {

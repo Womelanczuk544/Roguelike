@@ -9,6 +9,7 @@ TagManager:
   - spawner
   - Unit_enemy_schooting
   - Item
+  - miniMapObjects
   layers:
   - Default
   - TransparentFX

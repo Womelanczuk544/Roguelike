@@ -18,7 +18,8 @@ public class GenerateLabirynt : MonoBehaviour
 {
     private string[] tiles = { "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111" };
     private string[] options;
-
+    public GameObject miniMapTile;
+    private GameObject miniMapObjects;
 
     public const int numberOfRooms = 8;// musi byc parzyscie bo sie zjebie
     const int mapMaxSize = numberOfRooms * 2;
@@ -26,6 +27,7 @@ public class GenerateLabirynt : MonoBehaviour
     bool canNextOneAdd = true;
     bool firstOne = true;
     public string[,] finishedMap = new string[mapMaxSize + 1, mapMaxSize + 1];
+    public GameObject[,] finishedMiniMap = new GameObject[mapMaxSize + 1, mapMaxSize + 1];
     public int numOfRoomsDone = 0;
 
     public int startingPosX = numberOfRooms;
@@ -33,11 +35,14 @@ public class GenerateLabirynt : MonoBehaviour
 
     void Start()
     {
+        miniMapObjects = transform.Find("miniMapObjects").gameObject;
+
         for (int i = 0; i <= mapMaxSize; i++)
         {
             for (int j = 0; j <= mapMaxSize; j++)
             {
                 finishedMap[i, j] = null;
+                finishedMiniMap[i, j] = null;
             }
         }
 
@@ -210,9 +215,18 @@ public class GenerateLabirynt : MonoBehaviour
         finishedMap[x, y] = name + '0';
         canNextOneAdd = true;
         numOfRoomsDone++;
-      
-        //Instantiate(finishedMap[x, y], new Vector3(tileSize * x, tileSize * y, 0), Quaternion.identity);
 
+        //Instantiate(finishedMap[x, y], new Vector3(tileSize * x, tileSize * y, 0), Quaternion.identity);
+        GameObject currMiniTile = miniMapTile;
+
+        currMiniTile.transform.Find("left").gameObject.SetActive(name[(int)Directions.LEFT] == '1');
+        currMiniTile.transform.Find("right").gameObject.SetActive(name[(int)Directions.RIGHT] == '1');
+        currMiniTile.transform.Find("top").gameObject.SetActive(name[(int)Directions.UP] == '1');
+        currMiniTile.transform.Find("down").gameObject.SetActive(name[(int)Directions.DOWN] == '1');
+        currMiniTile.name = x.ToString() + " " + y.ToString();
+        finishedMiniMap[x, y] = currMiniTile;
+        GameObject instantiated = Instantiate(currMiniTile, new Vector3(x *1.1f +100, y* 1.1f + 100 , 0), Quaternion.identity);
+        instantiated.transform.parent = miniMapObjects.transform;
     }
 }
 
