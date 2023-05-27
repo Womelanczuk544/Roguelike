@@ -9,6 +9,7 @@ public class PlayerObservator : MonoBehaviour
     public EnemyObservator enemyObservator;
     public EnemyGenerator enemyGenerator;
     public DoorManager manager;
+
     private GenerateLabirynt generate;
     public int playerPosOnMapX, playerPosOnMapY;
     string currRoom;
@@ -49,6 +50,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapX++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             enemyGenerator.remove();
+            Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(-37, 0, 0));
             if (currRoom[4] == '0')
@@ -67,6 +69,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapX--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             enemyGenerator.remove();
+            Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(37, 0, 0));
             if (currRoom[4] == '0')
@@ -76,7 +79,7 @@ public class PlayerObservator : MonoBehaviour
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }
-        if (player.GetComponent<Transform>().position.y >= 11)
+        if (player.GetComponent<Transform>().position.y >= 12)
         {
             currRoom = currRoom.Remove(currRoom.Length - 1);
              currRoom += '1';
@@ -84,6 +87,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapY++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             enemyGenerator.remove();
+            Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, -21, 0));
             if (currRoom[4] == '0')
@@ -93,7 +97,7 @@ public class PlayerObservator : MonoBehaviour
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }
-        if (player.GetComponent<Transform>().position.y <= -11)
+        if (player.GetComponent<Transform>().position.y <= -10.5)
         {
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
@@ -101,6 +105,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapY--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             enemyGenerator.remove();
+            Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, 21, 0));
             if (currRoom[4] == '0')

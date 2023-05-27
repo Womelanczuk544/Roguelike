@@ -14,6 +14,7 @@ public class Spell : MonoBehaviour
     public bool isMele;
     void Start()
     {
+        Cleaner.add(gameObject);
         float temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().getDamageMultiplayer();
         minDamage *= temp;
         maxDamage *= temp;
@@ -24,7 +25,10 @@ public class Spell : MonoBehaviour
     {
         if (gameObject.transform.position.x > 18 || gameObject.transform.position.x < -19 ||
             gameObject.transform.position.y > 11 || gameObject.transform.position.y < -11)
+        {
+            Cleaner.remove(gameObject);
             Destroy(gameObject);
+        }
     }
     public void meleAttack(float ttl)
     {
@@ -57,6 +61,7 @@ public class Spell : MonoBehaviour
         }
         if(isMele == false)
         {
+            Cleaner.remove(gameObject);
             Destroy(gameObject);
         }
     }

@@ -1140,6 +1140,7 @@ GameObject:
   - component: {fileID: 1832810510}
   - component: {fileID: 1832810512}
   - component: {fileID: 1832810513}
+  - component: {fileID: 1832810514}
   m_Layer: 0
   m_Name: MainRoomGenerator
   m_TagString: Untagged
@@ -1212,6 +1213,18 @@ MonoBehaviour:
   numOfRoomsDone: 0
   startingPosX: 10
   startingPosY: 10
+--- !u!114 &1832810514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832810509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0215af02dda32d4d9c8e8dcf95d6158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1834245127
 GameObject:
   m_ObjectHideFlags: 0
