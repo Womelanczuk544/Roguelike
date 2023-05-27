@@ -43,7 +43,6 @@ public class PlayerObservator : MonoBehaviour
     {
         if (player.GetComponent<Transform>().position.x >= 18)
         {
-
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
@@ -59,7 +58,6 @@ public class PlayerObservator : MonoBehaviour
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //<- TU DODAC LABIRYNT (NP)
             enemyObservator.resetOnce();
-
         }
         if (player.GetComponent<Transform>().position.x <= -19)
         {

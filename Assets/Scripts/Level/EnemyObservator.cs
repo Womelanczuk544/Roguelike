@@ -10,6 +10,8 @@ public class EnemyObservator : MonoBehaviour
 
     public DoorManager manager;
 
+    public PrizeGenerator prizeGenerator;
+
     void Update()
     {
         if (spawner.counter == 0 && EnemyController.counter == 0 && Schooting_enemy.counter == 0)
@@ -17,6 +19,7 @@ public class EnemyObservator : MonoBehaviour
             time += Time.deltaTime;
             if (time > await && once)
             {
+                prizeGenerator.generate();
                 manager.open();
                 once = false;
             }

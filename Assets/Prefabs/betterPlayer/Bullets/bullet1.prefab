@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1bad6249e33bd4bb9072d4e8ecb879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToLive: 1.2
+  timeToLive: 1
   minDamage: 30
   maxDamage: 40
   isMele: 0

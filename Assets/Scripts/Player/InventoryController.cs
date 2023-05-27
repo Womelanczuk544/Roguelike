@@ -9,7 +9,6 @@ public class InventoryController : MonoBehaviour
     {
         inventory = new List<Item>();
     }
-
     public void add(Item item)
     {
         inventory.Add(item);

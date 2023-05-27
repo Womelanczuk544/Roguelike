@@ -24,7 +24,6 @@ public class EnemyGenerator : MonoBehaviour
     }
     public void generate()
     {
-
         int index = UnityEngine.Random.Range(0,3);
         active = Instantiate(gameObjects[index]);
     }
