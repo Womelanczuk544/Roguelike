@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
     private Rigidbody2D rb;
     private Animator animator;
     private Vector3 movementDirection;

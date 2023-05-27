@@ -25,7 +25,7 @@ public class SpellController : MonoBehaviour
         //rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         basicProjectile = projectile;
-        meleAttack = true;
+        meleAttack = false;
        
     }
 
@@ -55,7 +55,6 @@ public class SpellController : MonoBehaviour
         }
    
     }
-
     IEnumerator Shoot(Vector2 direction)
     {
         //animator.SetBool("isShooting", true);

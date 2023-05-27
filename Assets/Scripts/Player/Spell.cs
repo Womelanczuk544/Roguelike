@@ -6,9 +6,9 @@ using static UnityEditor.PlayerSettings;
 
 public class Spell : MonoBehaviour
 {
-    private float time;
-    private float timeToLive = 100;
+    private float time = 0;
 
+    public float timeToLive = 100;
     public float minDamage;
     public float maxDamage;
     public bool isMele;
@@ -23,6 +23,12 @@ public class Spell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
+        if (time > timeToLive)
+        {
+            Cleaner.remove(gameObject);
+            Destroy(gameObject);
+        }
         if (gameObject.transform.position.x > 18 || gameObject.transform.position.x < -19 ||
             gameObject.transform.position.y > 11 || gameObject.transform.position.y < -11)
         {

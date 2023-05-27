@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpellItem : Item
 {
     public GameObject projectile;
-
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

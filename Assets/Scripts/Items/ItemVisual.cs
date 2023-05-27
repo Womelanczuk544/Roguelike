@@ -11,7 +11,7 @@ public class ItemVisual : MonoBehaviour
         if (collision.GameObject().tag == "Player")
         {
             collision.gameObject.GetComponent<InventoryController>().add(item);
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
 }
