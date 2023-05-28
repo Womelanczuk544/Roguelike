@@ -7,10 +7,13 @@ public class PrizeGenerator : MonoBehaviour
 {
     //private int prizeId;
 
-    public GameObject variant1;
+    public GameObject variant1; //Tu zmieniac
     public GameObject variant2;
+    public GameObject variant3;
+    public GameObject variant4;
+    public GameObject variant5;
 
-    private int variantCount = 2;
+    private int variantCount = 5; //tu zmienic
 
     private List<GameObject> prizes;
 
@@ -30,14 +33,20 @@ public class PrizeGenerator : MonoBehaviour
             index2 = 0;
         active2 = Instantiate(prizes[index2]);
         active2.transform.position = -xOffset;
-        //utworzyc cale przedmioty tzn Ratatata + ItemVisual
+
+
+        Cleaner.add(active1);
+        Cleaner.add(active2);
     }
     // Start is called before the first frame update
     void Start()
     {
-        prizes = new List<GameObject>();
+        prizes = new List<GameObject>();    //tu dodac
         prizes.Add(variant1);
         prizes.Add(variant2);
+        prizes.Add(variant3);
+        prizes.Add(variant4);
+        prizes.Add(variant5);
     }
     // Update is called once per frame
     public void remove()

@@ -32,6 +32,7 @@ public class Enemy_Spell : MonoBehaviour
     {
         if (collision.GameObject().tag == "Player")
         {
+            Cleaner.remove(gameObject);
             Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<PlayerController>().takeDamage(dmg);

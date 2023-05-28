@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Enemy
 {
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        counter++;
+        onCreate();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour
         movementDirection = player.transform.position - transform.position;
     }
 
-    public void takeDamage(float damage)
+    override public void takeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -62,10 +62,5 @@ public class EnemyController : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
-    }
-
-    private void OnDestroy()
-    {
-        counter--;
     }
 }

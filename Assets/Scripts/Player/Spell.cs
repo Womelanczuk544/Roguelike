@@ -7,13 +7,20 @@ using static UnityEditor.PlayerSettings;
 public class Spell : MonoBehaviour
 {
     private float time = 0;
+    private GameObject player;
+    private Collider2D last;
 
     public float timeToLive = 100;
     public float minDamage;
     public float maxDamage;
-    public bool isMele;
+
+    public bool flyThrough;
+    public float lifesteal;
+    public float bloodDamage;
+
     void Start()
     {
+        player = player = GameObject.FindGameObjectWithTag("Player");
         Cleaner.add(gameObject);
         float temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().getDamageMultiplayer();
         minDamage *= temp;
@@ -42,30 +49,24 @@ public class Spell : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision == last)
+        {
+            return;
+        }
         if (collision.GameObject().tag == "Player") return;
-        if (collision.GameObject().tag == "Unit_enemy")
+        if (collision.GameObject().tag == "Unit_enemy" || collision.GameObject().tag == "spawner" || collision.GameObject().tag == "Unit_enemy_schooting")
         {
-            //Destroy(gameObject);
+            last = collision;
             float dmg = Random.Range(minDamage, maxDamage);
-            collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
-        }
-        if (collision.GameObject().tag == "spawner")
-        {
-            //Destroy(gameObject);
-            float dmg = Random.Range(minDamage, maxDamage);
-            collision.gameObject.GetComponent<spawner>().takeDamage(dmg);
-        }
-        if (collision.GameObject().tag == "Unit_enemy_schooting")
-        {
-            //Destroy(gameObject);
-            float dmg = Random.Range(minDamage, maxDamage);
-            collision.gameObject.GetComponent<Schooting_enemy>().takeDamage(dmg);
+            collision.gameObject.GetComponent<Enemy>().takeDamage(dmg);
+            dmg = (-dmg)*lifesteal;
+            player.GetComponent<PlayerController>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Obstacle")
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
-        if(isMele == false)
+        if (flyThrough == false)
         {
             Cleaner.remove(gameObject);
             Destroy(gameObject);
