@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
 {
     private static int enemyCounter = 0;
 
+    public virtual void takeBloodDamage(float damage)
+    {
+
+    }
     public virtual void takeDamage(float damage)
     {
 

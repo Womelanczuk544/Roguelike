@@ -7,6 +7,8 @@ using static UnityEditor.PlayerSettings;
 public class Spell : MonoBehaviour
 {
     private float time = 0;
+    private GameObject player;
+    private Collider2D last;
 
     public float timeToLive = 100;
     public float minDamage;
@@ -18,6 +20,7 @@ public class Spell : MonoBehaviour
 
     void Start()
     {
+        player = player = GameObject.FindGameObjectWithTag("Player");
         Cleaner.add(gameObject);
         float temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().getDamageMultiplayer();
         minDamage *= temp;
@@ -46,11 +49,18 @@ public class Spell : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision == last)
+        {
+            return;
+        }
         if (collision.GameObject().tag == "Player") return;
         if (collision.GameObject().tag == "Unit_enemy" || collision.GameObject().tag == "spawner" || collision.GameObject().tag == "Unit_enemy_schooting")
         {
+            last = collision;
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<Enemy>().takeDamage(dmg);
+            dmg = (-dmg)*lifesteal;
+            player.GetComponent<PlayerController>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Obstacle")
         {
