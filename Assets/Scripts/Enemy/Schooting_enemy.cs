@@ -66,7 +66,7 @@ public class Schooting_enemy : Enemy
         }
     }
 
-    public void takeDamage(float damage)
+    override public void takeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)

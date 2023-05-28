@@ -47,20 +47,10 @@ public class Spell : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GameObject().tag == "Player") return;
-        if (collision.GameObject().tag == "Unit_enemy")
+        if (collision.GameObject().tag == "Unit_enemy" || collision.GameObject().tag == "spawner" || collision.GameObject().tag == "Unit_enemy_schooting")
         {
             float dmg = Random.Range(minDamage, maxDamage);
-            collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
-        }
-        if (collision.GameObject().tag == "spawner")
-        {
-            float dmg = Random.Range(minDamage, maxDamage);
-            collision.gameObject.GetComponent<spawner>().takeDamage(dmg);
-        }
-        if (collision.GameObject().tag == "Unit_enemy_schooting")
-        {
-            float dmg = Random.Range(minDamage, maxDamage);
-            collision.gameObject.GetComponent<Schooting_enemy>().takeDamage(dmg);
+            collision.gameObject.GetComponent<Enemy>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Obstacle")
         {

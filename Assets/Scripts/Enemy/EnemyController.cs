@@ -33,7 +33,7 @@ public class EnemyController : Enemy
         movementDirection = player.transform.position - transform.position;
     }
 
-    public void takeDamage(float damage)
+    override public void takeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
