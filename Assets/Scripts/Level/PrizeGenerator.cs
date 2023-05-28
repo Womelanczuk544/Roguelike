@@ -30,7 +30,10 @@ public class PrizeGenerator : MonoBehaviour
             index2 = 0;
         active2 = Instantiate(prizes[index2]);
         active2.transform.position = -xOffset;
-        //utworzyc cale przedmioty tzn Ratatata + ItemVisual
+
+
+        Cleaner.add(active1);
+        Cleaner.add(active2);
     }
     // Start is called before the first frame update
     void Start()

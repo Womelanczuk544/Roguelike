@@ -11,7 +11,11 @@ public class Spell : MonoBehaviour
     public float timeToLive = 100;
     public float minDamage;
     public float maxDamage;
-    public bool isMele;
+
+    public bool flyThrough;
+    public float lifesteal;
+    public float bloodDamage;
+
     void Start()
     {
         Cleaner.add(gameObject);
@@ -45,27 +49,24 @@ public class Spell : MonoBehaviour
         if (collision.GameObject().tag == "Player") return;
         if (collision.GameObject().tag == "Unit_enemy")
         {
-            //Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<EnemyController>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "spawner")
         {
-            //Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<spawner>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Unit_enemy_schooting")
         {
-            //Destroy(gameObject);
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<Schooting_enemy>().takeDamage(dmg);
         }
         if (collision.GameObject().tag == "Obstacle")
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
-        if(isMele == false)
+        if (flyThrough == false)
         {
             Cleaner.remove(gameObject);
             Destroy(gameObject);

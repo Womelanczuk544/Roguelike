@@ -12,7 +12,6 @@ public class SpellController : MonoBehaviour
     public float projectileForce;
     private Animator animator;
     public bool canShoot = true;
-    public bool meleAttack;
     public GameObject hands;
     public GameObject gun;
     public AudioSource shootSound;
@@ -24,9 +23,7 @@ public class SpellController : MonoBehaviour
     {
         //rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        basicProjectile = projectile;
-        meleAttack = false;
-       
+        basicProjectile = projectile;       
     }
 
     public void changeProjectile(GameObject newProjectile)
@@ -37,13 +34,7 @@ public class SpellController : MonoBehaviour
     public void returnBasicProjectile()
     {
         projectile = basicProjectile;
-        meleAttack = true;
     }
-    public void changeAttackType(bool type)
-    {
-        meleAttack = type;
-    }
-
     void Update() {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 myPos = transform.position + offset;
@@ -66,13 +57,7 @@ public class SpellController : MonoBehaviour
         shootSound.Play();
         
 
-        if (meleAttack==true)
-        {
-            spell.GetComponent<Spell>().meleAttack(0.3f);
-            spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-        }
-        else
-            spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
+        spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
 
         //spell.transform.right = direction; hmmm
 

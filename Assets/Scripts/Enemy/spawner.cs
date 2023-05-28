@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawner : MonoBehaviour
+public class spawner : Enemy
 {    
     private float time;    
 
@@ -13,14 +13,12 @@ public class spawner : MonoBehaviour
     public int maxSpanws;
     public float minDamage;
     public float maxDamage;
-
-    public static int counter = 0;
     //public int maxChildren; //optionaly todo
 
     // Start is called before the first frame update
     void Start()
     {
-        counter++;
+        onCreate();
         time = 0;
     }
 
@@ -43,9 +41,5 @@ public class spawner : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    private void OnDestroy()
-    {
-        counter--;
     }
 }
