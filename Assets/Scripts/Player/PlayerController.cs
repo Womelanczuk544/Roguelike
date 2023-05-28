@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private float damageMultiplayer;
     private SpellController spellController;
     private HealthBar healthbarScript;
+    private float scale;
 
     public float speed = 1f;
     public float dashForce = 1f;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         healthbarScript = healthBar.GetComponent<HealthBar>();
+        scale = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -54,12 +57,12 @@ public class PlayerController : MonoBehaviour
         if (direction.x < 0)
         {
             //this.spriteRenderer.flipX = true;
-            transform.localScale = new Vector3(-5, 5, 5);
+            transform.localScale = new Vector3(-scale, scale, scale);
             gun.transform.localScale = new Vector3(-1, -1, 1);
         }
         else
         {
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(scale, scale, scale);
             gun.transform.localScale = new Vector3(1, 1, 1);
         }
 
