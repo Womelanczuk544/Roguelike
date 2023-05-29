@@ -43,10 +43,6 @@ public class Spell : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void meleAttack(float ttl)
-    {
-        timeToLive = ttl;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == last)

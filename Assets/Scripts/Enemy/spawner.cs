@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class spawner : Enemy
 {    
-    private float time;    
+    private float time;
+    private GameObject player;
 
     public float health;
     public float spawnTimer;
@@ -20,6 +21,7 @@ public class spawner : Enemy
     {
         onCreate();
         time = 0;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class spawner : Enemy
         health -= damage;
         if (health <=0)
         {
+            player.GetComponent<PlayerController>().getPoints(10);
             Destroy(gameObject);
         }
     }

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float baseHealth;
     public GameObject healthBar;
     public GameObject gun;
+    public static int score;
 
     // Start is called before the first frame update
     void Start()
@@ -128,12 +130,19 @@ public class PlayerController : MonoBehaviour
         return damageMultiplayer;
     }
 
+    public void getPoints(int _score)
+    {
+        Debug.Log("siema byq" + score);
+        score += _score;
+    }
+
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
+            shop.money += score;
             SceneManager.LoadScene("Game over");
         }
         if (currentHealth > maxHealth)

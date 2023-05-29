@@ -71,6 +71,7 @@ public class Schooting_enemy : Enemy
         health -= damage;
         if (health <= 0)
         {
+            player.GetComponent<PlayerController>().getPoints(10);
             Destroy(gameObject);
         }
     }

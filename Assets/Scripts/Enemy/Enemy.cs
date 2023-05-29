@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void takeDamage(float damage)
     {
-
+        Debug.Log("coooooo");
     }
     public static int getCounter()
     {
