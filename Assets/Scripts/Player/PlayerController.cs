@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour
 
     public void getPoints(int _score)
     {
-        Debug.Log("siema byq" + score);
         score += _score;
     }
 
