@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 
@@ -24,20 +25,48 @@ public class DoorManager : MonoBehaviour
     private GameObject rightDoorObj;
     private GameObject upDoorObj;
     private GameObject downDoorObj;
+    private UnityEngine.UI.Image panelImage;
 
+    public GameObject blackScreen;
     public GameObject wallPrefab;
     public GameObject temporaryWallPrefab;
     public Transform pos;
-
+    public float fadeDuration = 0.5f;
+    private void Start()
+    {
+        panelImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
+    }
     public void roomEnter(bool left, bool right, bool up, bool down)
     {
+        panelImage.color = Color.black;
+        StartCoroutine(FadeOut());
         upDoor = up;
         downDoor = down;
         leftDoor = left;
         rightDoor = right;
         close();
     }
-    public void close()
+
+    private System.Collections.IEnumerator FadeOut()
+    {
+        float timer = 0f;
+        Color originalColor = panelImage.color;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            float normalizedTime = timer / fadeDuration;
+
+            // Calculate the new alpha value using Mathf.Lerp
+            float newAlpha = Mathf.Lerp(originalColor.a, 0f, normalizedTime);
+
+            // Update the color of the panel image with the new alpha value
+            panelImage.color = new Color(originalColor.r, originalColor.g, originalColor.b, newAlpha);
+
+            yield return null;
+        }
+    }
+        public void close()
     {
         if(leftDoor==true)
             leftDoorObj = Instantiate(wallPrefab, pos.position + leftOffset, Quaternion.identity);
