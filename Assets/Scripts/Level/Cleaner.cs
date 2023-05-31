@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Cleaner : MonoBehaviour
 {
-    private static List<GameObject> activeList;
+    private static List<GameObject> activeList = new List<GameObject>();
 
     void Start()
     {
-        activeList = new List<GameObject>();
+
     }
 
     public static void add(GameObject element)

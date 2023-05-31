@@ -41,7 +41,7 @@ public class PlayerObservator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<Transform>().position.x >= 18)
+        if (player.GetComponent<Transform>().position.x >= 19)
         {
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
@@ -51,7 +51,7 @@ public class PlayerObservator : MonoBehaviour
             enemyGenerator.remove();
             Cleaner.clear();
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(-37, 0, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(-36.5f, 0, 0));
             if (currRoom[4] == '0')
             {
                 enemyGenerator.generate();
@@ -59,7 +59,7 @@ public class PlayerObservator : MonoBehaviour
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //<- TU DODAC LABIRYNT (NP)
             enemyObservator.resetOnce();
         }
-        if (player.GetComponent<Transform>().position.x <= -19)
+        if (player.GetComponent<Transform>().position.x <= -19.5)
         {
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
@@ -69,7 +69,7 @@ public class PlayerObservator : MonoBehaviour
             enemyGenerator.remove();
             Cleaner.clear();
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(37, 0, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(36.5f, 0, 0));
             if (currRoom[4] == '0')
             {
                 enemyGenerator.generate();
@@ -87,7 +87,7 @@ public class PlayerObservator : MonoBehaviour
             enemyGenerator.remove();
             Cleaner.clear();
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(0, -21, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(0, -20.5f, 0));
             if (currRoom[4] == '0')
             {
                 enemyGenerator.generate();
@@ -105,7 +105,7 @@ public class PlayerObservator : MonoBehaviour
             enemyGenerator.remove();
             Cleaner.clear();
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(0, 21, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(0, 20.5f, 0));
             if (currRoom[4] == '0')
             {
                 enemyGenerator.generate();
