@@ -50,10 +50,12 @@ public class Spell : MonoBehaviour
             return;
         }
         if (collision.GameObject().tag == "Player") return;
-        if (collision.GameObject().tag == "Unit_enemy" || collision.GameObject().tag == "spawner" || collision.GameObject().tag == "Unit_enemy_schooting")
+        if (collision.GameObject().tag == "Spell") return;
+        if (collision.GameObject().tag == "Unit_enemy")
         {
             last = collision;
             float dmg = Random.Range(minDamage, maxDamage);
+            dmg *= player.GetComponent<PlayerController>().getDamageMultiplayer();
             collision.gameObject.GetComponent<Enemy>().takeDamage(dmg);
             dmg = (-dmg)*lifesteal;
             player.GetComponent<PlayerController>().takeDamage(dmg);

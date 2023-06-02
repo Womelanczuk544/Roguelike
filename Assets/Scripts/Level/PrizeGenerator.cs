@@ -12,8 +12,13 @@ public class PrizeGenerator : MonoBehaviour
     public GameObject variant3;
     public GameObject variant4;
     public GameObject variant5;
+    public GameObject gvariant1; //Tu zmieniac
+    public GameObject gvariant2;
+    public GameObject gvariant3;
+    public GameObject gvariant4;
+    public GameObject gvariant5;
 
-    private int variantCount = 5; //tu zmienic
+    private int variantCount = 10; //tu zmienic
 
     private List<GameObject> prizes;
 
@@ -38,6 +43,14 @@ public class PrizeGenerator : MonoBehaviour
         Cleaner.add(active1);
         Cleaner.add(active2);
     }
+
+    public bool getList(List<GameObject> _prizes)
+    {
+        prizes = _prizes;
+        if (prizes.Count >= 2)
+            return true;
+        return false;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +60,11 @@ public class PrizeGenerator : MonoBehaviour
         prizes.Add(variant3);
         prizes.Add(variant4);
         prizes.Add(variant5);
+        prizes.Add(gvariant1);
+        prizes.Add(gvariant2);
+        prizes.Add(gvariant3);
+        prizes.Add(gvariant4);
+        prizes.Add(gvariant5);
     }
     // Update is called once per frame
 

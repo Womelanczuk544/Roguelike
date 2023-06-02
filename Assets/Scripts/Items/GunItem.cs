@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class GunItem : Item
 {
@@ -17,11 +18,12 @@ public class GunItem : Item
         player.GetComponent<SpellController>().setProjectileForce(projectileForce);
         player.GetComponent<SpellController>().setRechargeTime(rechargeTime);
         player.GetComponent<SpellController>().setProjectileSerie(projectileSerie);
-        //player.GetComponent<SpellController>(). <-change dmg
+        player.GetComponent<PlayerController>().setDamage(dmgMultiplayer);
     }
     public override void onRemove()
     {
         player.GetComponent<SpellController>().returnBasicGun();
+        player.GetComponent<PlayerController>().setDamage(1);            
     }
     public override void triggerEffect() { }
 }

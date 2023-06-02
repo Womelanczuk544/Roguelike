@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: -2842461475178532619}
   m_Layer: 0
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +362,9 @@ MonoBehaviour:
   timeToLive: 2
   minDamage: 15
   maxDamage: 20
-  isMele: 0
+  flyThrough: 0
+  lifesteal: 0
+  bloodDamage: 0
 --- !u!50 &-2623053562349779106
 Rigidbody2D:
   serializedVersion: 4

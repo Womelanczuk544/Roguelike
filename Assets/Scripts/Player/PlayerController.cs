@@ -124,6 +124,10 @@ public class PlayerController : MonoBehaviour
     {
         damageMultiplayer *= value;
     }
+    public void setDamage(float _damage)
+    {
+        damageMultiplayer = _damage;
+    }
 
     public float getDamageMultiplayer()
     {
