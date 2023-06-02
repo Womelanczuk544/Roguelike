@@ -165,8 +165,5 @@ public class PlayerController : MonoBehaviour
             rb.velocity = movementDirection.normalized * speed;
 
         }
-
-
     }
-
 }

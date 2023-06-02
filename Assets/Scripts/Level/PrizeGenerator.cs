@@ -49,13 +49,37 @@ public class PrizeGenerator : MonoBehaviour
         prizes.Add(variant5);
     }
     // Update is called once per frame
+
+    private void Update()
+    {
+        if (active1 == null && active2 == null)
+            return;
+        if (active1 == null)
+        {            
+            if (active2 !=null)
+                Destroy(active2);
+            active2 = null;
+        }
+        if (active2 == null)
+        {
+            if (active1 != null)
+                Destroy(active1);
+            active1 = null;
+        }
+    }
     public void remove()
     {
         if (active1 != null)
+        {
             Destroy(active1);
-        active1 = null;
-        if (active2 != null)
             Destroy(active2);
+        }        
+        if (active2 != null)
+        {
+            Destroy(active2);
+            Destroy(active1);
+        }
         active2 = null;
+        active1 = null;
     }
 }

@@ -17,8 +17,9 @@ public class Cleaner : MonoBehaviour
         activeList.Add(element);
     }
     public static void remove(GameObject element)
-    {
+    {        
         activeList.Remove(element);
+        Destroy(element);
     }
     public static void clear()
     {
