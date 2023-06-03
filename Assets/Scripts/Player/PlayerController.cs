@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spellController = GetComponent<SpellController>();
-        //rb.isKinematic = true;
 
         damageMultiplayer = 1;
         currentHealth = baseHealth;

@@ -54,7 +54,7 @@ public class PlayerObservator : MonoBehaviour
             player.GetComponent<Transform>().Translate(new Vector3(-36.5f, 0, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
+                enemyGenerator.generate("left");
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //<- TU DODAC LABIRYNT (NP)
             enemyObservator.resetOnce();
@@ -72,7 +72,7 @@ public class PlayerObservator : MonoBehaviour
             player.GetComponent<Transform>().Translate(new Vector3(36.5f, 0, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
+                enemyGenerator.generate("right");
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
@@ -90,7 +90,7 @@ public class PlayerObservator : MonoBehaviour
             player.GetComponent<Transform>().Translate(new Vector3(0, -20.5f, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
+                enemyGenerator.generate("down");
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
@@ -108,7 +108,7 @@ public class PlayerObservator : MonoBehaviour
             player.GetComponent<Transform>().Translate(new Vector3(0, 20.5f, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
+                enemyGenerator.generate("up");
             };
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();

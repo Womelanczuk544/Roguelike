@@ -78,7 +78,7 @@ MonoBehaviour:
   maxDmg: 15
   rb: {fileID: 1199242837538013633}
   speed: 1
-  radius: 8
+  radius: 12
 --- !u!212 &7595075814230724332
 SpriteRenderer:
   m_ObjectHideFlags: 0
