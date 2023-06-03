@@ -30,6 +30,9 @@ public class Enemy_Spell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.GameObject().tag == "Unit_enemy") {
+            return;
+        }
         if (collision.GameObject().tag == "Player")
         {
             Cleaner.remove(gameObject);

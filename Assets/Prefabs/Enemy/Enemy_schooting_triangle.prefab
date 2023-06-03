@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1199242837538013634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.0406, y: 4.1794, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4.47, y: 4.47, z: 4.47}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,12 +73,12 @@ MonoBehaviour:
   projectile: {fileID: 7401451023324678205, guid: 48f6daa7c8d9b2d43bd82c8392facb06, type: 3}
   projectileForce: 10
   health: 50
-  frequency: 5
-  minDmg: 5
-  maxDmg: 10
+  frequency: 3
+  minDmg: 10
+  maxDmg: 15
   rb: {fileID: 1199242837538013633}
   speed: 1
-  radius: 5
+  radius: 8
 --- !u!212 &7595075814230724332
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   - {x: 0.10815039, y: -0.20082325, z: 0}
   m_ShapePathHash: 952514199
   m_Mesh: {fileID: 0}
-  m_InstanceId: -138678
+  m_InstanceId: -64158
   m_LocalBounds:
     m_Center: {x: -0.019157484, y: -0.17839304, z: 0}
     m_Extent: {x: 0.1273081, y: 0.022430204, z: 0}

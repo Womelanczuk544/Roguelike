@@ -58,7 +58,7 @@ public class Schooting_enemy : Enemy
         time += Time.deltaTime;
         if (time >= frequency)
         {
-            GameObject spell = Instantiate(projectile, myPos + direction, Quaternion.identity);
+            GameObject spell = Instantiate(projectile, myPos + new Vector2( direction.x * 1.2f,0), Quaternion.identity);
             spell.GetComponent<Enemy_Spell>().setValues(minDmg, maxDmg);
             spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
             spell.transform.right = direction;

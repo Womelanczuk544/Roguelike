@@ -22,12 +22,13 @@ public class SpellController : MonoBehaviour
     private int projectileSerie;
     private float rechargeTime;
     private Vector3 offset = new(0, 0, 0);
-    //private Rigidbody2D rb;
+    private Rigidbody2D rb;
     private GameObject basicProjectile;
     private void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         basicProjectile = projectile;
         projectileForce = 10;
         projectileSerie = 1;
@@ -95,7 +96,11 @@ public class SpellController : MonoBehaviour
         shootSound.Play();
         for (int i = 0; i < projectileSerie; i++)
         {
-            float shift = UnityEngine.Random.Range(-0.03f * projectileSerie, 0.03f * projectileSerie);
+                float shift = UnityEngine.Random.Range(-0.03f * projectileSerie, 0.03f * projectileSerie);
+            if(rb.velocity == Vector2.zero)
+            {
+                shift = 0;
+            }
             Vector2 tempDirection = new Vector2(direction.x + shift, direction.y + shift);
             float angle = Mathf.Atan2(tempDirection.y, tempDirection.x) * Mathf.Rad2Deg;
             GameObject spell = Instantiate(projectile, gun.transform.position, Quaternion.Euler(0f, 0f, angle));

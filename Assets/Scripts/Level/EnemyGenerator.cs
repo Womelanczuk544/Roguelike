@@ -7,30 +7,31 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject variant1;
-    public GameObject variant2;
-    public GameObject variant3;
 
-    private List<GameObject> gameObjects;
+    public List<GameObject> enemies;
+    public int currentLevel = 1;
 
-    private GameObject active = null;
-   
+    //private GameObject active = null;
+
     private void Start()
     {
-        gameObjects = new List<GameObject>();
-        gameObjects.Add(variant1);
-        gameObjects.Add(variant2);
-        gameObjects.Add(variant3);
     }
     public void generate()
     {
-        int index = UnityEngine.Random.Range(0,3);
-        active = Instantiate(gameObjects[index]);
+        int numOfEnemies = UnityEngine.Random.Range(2 + currentLevel, 3 + currentLevel);
+        for (int i = 0; i < numOfEnemies; i++)
+        {
+            int index = UnityEngine.Random.Range(0, 3);
+            float posX = UnityEngine.Random.Range(-17, 16);
+            float posY = UnityEngine.Random .Range(-9, 9);
+            Instantiate(enemies[index], new Vector2(posX,posY), Quaternion.identity);
+
+        }
     }
-    public void remove()
+/*    public void remove()
     {
         if (active != null)
             Destroy(active);
         active = null;
-    }
+    }*/
 }

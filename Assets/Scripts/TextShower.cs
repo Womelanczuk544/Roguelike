@@ -7,7 +7,7 @@ using static UnityEditor.PlayerSettings;
 
 public class TextShower : MonoBehaviour
 {
-    private bool flag=false;
+    private bool isPlayerIn=false;
 
     public Canvas text1;
 
@@ -22,7 +22,7 @@ public class TextShower : MonoBehaviour
         if (collision.GameObject().tag == "Player")
         {
             text1.enabled=true;
-            flag=true;
+            isPlayerIn=true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -30,17 +30,17 @@ public class TextShower : MonoBehaviour
         if (collision.GameObject().tag == "Player")
         {
             text1.enabled = false;
-            flag = false;
+            isPlayerIn = false;
         }
     }
 
     private void Update()
     {
-        if (flag)
+        if (isPlayerIn)
         {
             if(Input.GetKeyUp(KeyCode.E)) {
 
-                SceneManager.LoadScene("Wojtek_scene");
+                SceneManager.LoadScene("Andrzej_scene");
             }
         }
         if (Input.GetKeyUp(KeyCode.Escape))
