@@ -25,11 +25,23 @@ public class EnemyGenerator : MonoBehaviour
         float maxY = (cameFrom == "up") ? 1 : 9;
         for (int i = 0; i < numOfEnemies; i++)
         {
-            int index = UnityEngine.Random.Range(0, 3);
+            int index = UnityEngine.Random.Range(0, enemies.Count);
             float posX = UnityEngine.Random.Range(minX, maxX);
-            float posY = UnityEngine.Random .Range(minY, maxY);
+            float posY = UnityEngine.Random.Range(minY, maxY);
             Instantiate(enemies[index], new Vector2(posX,posY), Quaternion.identity);
         }
+    }
+
+    public void generateBoss()
+    {
+        int index = UnityEngine.Random.Range(0, enemies.Count);
+        GameObject boss = enemies[index];
+        boss.transform.localScale *= 2;
+        float posX = UnityEngine.Random.Range(-9, 9);
+        float posY = UnityEngine.Random.Range(-1, 1);
+        Instantiate(enemies[index], new Vector2(posX, posY), Quaternion.identity);
+
+        Debug.Log("boss");
     }
 /*    public void remove()
     {

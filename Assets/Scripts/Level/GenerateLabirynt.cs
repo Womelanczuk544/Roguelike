@@ -5,12 +5,27 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 enum Directions
 {
     LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3
+}
+
+public struct Coords
+{
+    public Coords(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public int X { get; }
+    public int Y { get; }
+
 }
 
 
@@ -20,6 +35,7 @@ public class GenerateLabirynt : MonoBehaviour
     private string[] options;
     public GameObject miniMapTile;
     private GameObject miniMapObjects;
+    private int numWaiting = 0;
 
     public const int numberOfRooms = 8;// musi byc parzyscie bo sie zjebie
     const int mapMaxSize = numberOfRooms * 2;
@@ -32,6 +48,12 @@ public class GenerateLabirynt : MonoBehaviour
 
     public int startingPosX = numberOfRooms;
     public int startingPosY = numberOfRooms;
+    public string bossRoom;
+
+    public bool finishedGenerating = false;
+
+    private List<Coords> possibleBossRooms = new List<Coords>();
+    public Coords boosRoomPos;
 
     void Start()
     {
@@ -45,18 +67,49 @@ public class GenerateLabirynt : MonoBehaviour
                 finishedMiniMap[i, j] = null;
             }
         }
-
+        numWaiting++;
         StartCoroutine(AddRooms(startingPosX, startingPosY, 10));
+        StartCoroutine(WaitForDone());
     }
 
+    IEnumerator WaitForDone()
+    {
+        while (numWaiting > 0)
+        {
+            yield return null;
+        }
+        for (int i = 0; i <= mapMaxSize; i++)
+        {
+            for (int j = 0; j <= mapMaxSize; j++)
+            {
+                if (finishedMap[i, j] == "10000" || finishedMap[i, j] == "00010" || finishedMap[i, j] == "00100" || finishedMap[i, j] == "01000")
+                {
+                    possibleBossRooms.Add(new Coords(i, j));
+                }
+            }
+        }
+        int randroomNum = UnityEngine.Random.Range(0,possibleBossRooms.Count);
+        boosRoomPos = possibleBossRooms[randroomNum];
+        bossRoom = boosRoomPos.X.ToString() + " " + boosRoomPos.Y.ToString();
 
+        GameObject currRoom = transform.Find("miniMapObjects").gameObject.transform.Find(boosRoomPos.X.ToString() + " " + boosRoomPos.Y.ToString() + "(Clone)").gameObject;
+        currRoom.transform.Find("skull").gameObject.SetActive(true);
+
+        finishedGenerating = true;
+    }
 
     IEnumerator AddRooms(int x, int y, int previousDir)
     {
+        numWaiting++;
+        if(previousDir == 10)
+        {
+            numWaiting--;
+        }
         while (!canNextOneAdd)
         {
             yield return null;
         }
+        numWaiting--;
         canNextOneAdd = false;
         if (currNumberOfRooms < numberOfRooms)
         {
@@ -223,6 +276,8 @@ public class GenerateLabirynt : MonoBehaviour
         currMiniTile.transform.Find("right").gameObject.SetActive(name[(int)Directions.RIGHT] == '1');
         currMiniTile.transform.Find("top").gameObject.SetActive(name[(int)Directions.UP] == '1');
         currMiniTile.transform.Find("down").gameObject.SetActive(name[(int)Directions.DOWN] == '1');
+        currMiniTile.transform.Find("skull").gameObject.SetActive(false);
+
         currMiniTile.name = x.ToString() + " " + y.ToString();
         finishedMiniMap[x, y] = currMiniTile;
         GameObject instantiated = Instantiate(currMiniTile, new Vector3(x *1.1f +100, y* 1.1f + 100 , 0), Quaternion.identity);
