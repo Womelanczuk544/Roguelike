@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
@@ -35,12 +36,10 @@ public class EnemyGenerator : MonoBehaviour
     public void generateBoss()
     {
         int index = UnityEngine.Random.Range(0, enemies.Count);
-        GameObject boss = enemies[index];
-        boss.transform.localScale *= 2;
         float posX = UnityEngine.Random.Range(-9, 9);
         float posY = UnityEngine.Random.Range(-1, 1);
-        Instantiate(enemies[index], new Vector2(posX, posY), Quaternion.identity);
-
+        GameObject boss = Instantiate(enemies[index], new Vector2(posX, posY), Quaternion.identity);
+        boss.transform.localScale *= 2;
         Debug.Log("boss");
     }
 /*    public void remove()
