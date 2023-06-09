@@ -22,9 +22,6 @@ public class PlayerObservator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         StartCoroutine(generateFirstRoom());
-        /*  currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-          manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //true sciana*/
-        //przejscie
     }
 
     IEnumerator generateFirstRoom()
@@ -53,7 +50,7 @@ public class PlayerObservator : MonoBehaviour
             Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(-36.5f, 0, 0));
-            if (currRoom[4] == '0')
+            if (currRoom[4] == '0') // currRoom[4] == 0 if it has not been cleared
             {
                 if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY) 
                     enemyGenerator.generateBoss();

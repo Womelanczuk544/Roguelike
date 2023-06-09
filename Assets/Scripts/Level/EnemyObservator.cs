@@ -11,9 +11,14 @@ public class EnemyObservator : MonoBehaviour
     private bool enemySlainFlag = false;
 
     public DoorManager manager;
-
+    public GameObject enemyRoomGenerator;
+    private EnemyGenerator enemyGenerator;
     public PrizeGenerator prizeGenerator;
 
+    private void Start()
+    {
+        enemyGenerator = enemyRoomGenerator.GetComponent<EnemyGenerator>();
+    }
     void Update()
     {
         if (Enemy.getCounter() == 0)
@@ -22,7 +27,17 @@ public class EnemyObservator : MonoBehaviour
             if (time > await && once)
             {
                 if (enemySlainFlag == true)
-                    prizeGenerator.generate();
+                {
+                    if (enemyGenerator.playerIsInBossRoom)
+                    {
+                        prizeGenerator.generateTeleport();
+                    }
+                    else
+                    {
+                        prizeGenerator.generate();
+
+                    }
+                }
                 enemySlainFlag = false;                
                 manager.open();
                 once = false;
@@ -35,6 +50,7 @@ public class EnemyObservator : MonoBehaviour
             once = true;
         }
     }
+   
     public void resetOnce()
     {
         once = true;

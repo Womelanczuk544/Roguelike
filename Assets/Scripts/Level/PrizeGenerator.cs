@@ -18,6 +18,8 @@ public class PrizeGenerator : MonoBehaviour
     public GameObject gvariant4;
     public GameObject gvariant5;
 
+    public GameObject teleport;
+
     private int variantCount = 10; //tu zmienic
 
     private List<GameObject> prizes;
@@ -84,6 +86,11 @@ public class PrizeGenerator : MonoBehaviour
                 Destroy(active1);
             active1 = null;
         }
+    }
+
+    public void generateTeleport()
+    {
+        Instantiate(teleport,new Vector3(0,0,0), Quaternion.identity);
     }
     public void remove()
     {

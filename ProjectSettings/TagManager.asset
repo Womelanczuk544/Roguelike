@@ -11,6 +11,8 @@ TagManager:
   - Item
   - miniMapObjects
   - Spell
+  - canvas
+  - enemyGenerator
   layers:
   - Default
   - TransparentFX

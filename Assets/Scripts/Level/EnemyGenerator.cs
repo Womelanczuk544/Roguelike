@@ -10,12 +10,14 @@ public class EnemyGenerator : MonoBehaviour
 {
 
     public List<GameObject> enemies;
-    public int currentLevel = 1;
+    public static int currentLevel = 1;
+    public bool playerIsInBossRoom = false;
 
     //private GameObject active = null;
 
     private void Start()
     {
+       
     }
     public void generate(string cameFrom)
     {
@@ -33,8 +35,15 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
+    public void nextLevel()
+    {
+        currentLevel++;
+        Debug.Log(currentLevel);
+    }
+
     public void generateBoss()
     {
+        playerIsInBossRoom = true;
         int index = UnityEngine.Random.Range(0, enemies.Count);
         float posX = UnityEngine.Random.Range(-9, 9);
         float posY = UnityEngine.Random.Range(-1, 1);
