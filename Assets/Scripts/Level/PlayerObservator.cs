@@ -56,6 +56,9 @@ public class PlayerObservator : MonoBehaviour
                     enemyGenerator.generateBoss();
                 else
                     enemyGenerator.generate("left");
+            }else if(generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //<- TU DODAC LABIRYNT (NP)
             enemyObservator.resetOnce();
@@ -78,6 +81,10 @@ public class PlayerObservator : MonoBehaviour
                 else
                 enemyGenerator.generate("right");
             }
+            else if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
+            }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }
@@ -99,6 +106,10 @@ public class PlayerObservator : MonoBehaviour
                 else
                     enemyGenerator.generate("down");
             }
+            else if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
+            }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }
@@ -119,7 +130,11 @@ public class PlayerObservator : MonoBehaviour
                     enemyGenerator.generateBoss();
                 else
                     enemyGenerator.generate("up");
-            };
+            }
+            else if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
+            }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }

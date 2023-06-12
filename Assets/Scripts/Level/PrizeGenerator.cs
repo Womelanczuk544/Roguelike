@@ -16,7 +16,7 @@ public class PrizeGenerator : MonoBehaviour
     public GameObject gvariant2;
     public GameObject gvariant3;
     public GameObject gvariant4;
-    public GameObject gvariant5;
+    public GameObject gvariant5; // co to tablica xd
 
     public GameObject teleport;
 
@@ -40,7 +40,6 @@ public class PrizeGenerator : MonoBehaviour
             index2 = 0;
         active2 = Instantiate(prizes[index2]);
         active2.transform.position = -xOffset;
-
 
         Cleaner.add(active1);
         Cleaner.add(active2);
@@ -90,7 +89,8 @@ public class PrizeGenerator : MonoBehaviour
 
     public void generateTeleport()
     {
-        Instantiate(teleport,new Vector3(0,0,0), Quaternion.identity);
+        GameObject tp = Instantiate(teleport,new Vector3(0,0,0), Quaternion.identity);
+        Cleaner.add(tp);
     }
     public void remove()
     {
