@@ -13,7 +13,6 @@ TagManager:
   - Spell
   - canvas
   - enemyGenerator
-  - healthBar
   layers:
   - Default
   - TransparentFX

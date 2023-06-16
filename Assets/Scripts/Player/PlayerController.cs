@@ -15,25 +15,25 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isDashing = false;
     private bool canDash = true;
-    public float maxHealth;
-    public float currentHealth;
+    private float maxHealth;
+    private float currentHealth;
     private float damageMultiplayer;
     private SpellController spellController;
     private HealthBar healthbarScript;
     private float scale;
-    private static PlayerController instance;
 
     public float speed = 1f;
     public float dashForce = 1f;
     public float dashiingTime = 2f;
     public float baseHealth;
+    public GameObject healthBar;
     public GameObject gun;
     public static int score;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        healthbarScript = healthBar.GetComponent<HealthBar>();
         scale = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -43,22 +43,7 @@ public class PlayerController : MonoBehaviour
         damageMultiplayer = 1;
         currentHealth = baseHealth;
         maxHealth = baseHealth;
-        instance = this;
-    }
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            // If not, set the current instance as the active instance
-            instance = this;
-            // Set this object as the root of the hierarchy so it won't be destroyed
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            // If an instance already exists, destroy this object
-            Destroy(gameObject);
-        }
+        healthbarScript.SetMaxHealth(baseHealth);
     }
 
     // Update is called once per frame
@@ -156,6 +141,7 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
+        healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
             shop.money += score;
