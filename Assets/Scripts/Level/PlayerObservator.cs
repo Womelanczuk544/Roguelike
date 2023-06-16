@@ -48,7 +48,11 @@ public class PlayerObservator : MonoBehaviour
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapX++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
+<<<<<<< Updated upstream
             enemyGenerator.remove();
+=======
+            Cleaner.clear();
+>>>>>>> Stashed changes
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(-22, 0, 0));
             if (currRoom[4] == '0')
@@ -66,7 +70,11 @@ public class PlayerObservator : MonoBehaviour
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapX--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
+<<<<<<< Updated upstream
             enemyGenerator.remove();
+=======
+            Cleaner.clear();
+>>>>>>> Stashed changes
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(22, 0, 0));
             if (currRoom[4] == '0')
@@ -83,7 +91,11 @@ public class PlayerObservator : MonoBehaviour
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapY++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
+<<<<<<< Updated upstream
             enemyGenerator.remove();
+=======
+            Cleaner.clear();
+>>>>>>> Stashed changes
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, -22, 0));
             if (currRoom[4] == '0')
@@ -100,7 +112,11 @@ public class PlayerObservator : MonoBehaviour
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapY--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
+<<<<<<< Updated upstream
             enemyGenerator.remove();
+=======
+            Cleaner.clear();
+>>>>>>> Stashed changes
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, 22, 0));
             if (currRoom[4] == '0')

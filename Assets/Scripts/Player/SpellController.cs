@@ -65,7 +65,23 @@ public class SpellController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject spell = Instantiate(projectile, gun.transform.position, Quaternion.Euler(0f, 0f, angle));
         shootSound.Play();
+<<<<<<< Updated upstream
         
+=======
+        for (int i = 0; i < projectileSerie; i++)
+        {
+            float shift = UnityEngine.Random.Range(-0.03f * projectileSerie, 0.03f * projectileSerie);
+            if(rb.velocity == Vector2.zero)
+            {
+                shift = 0;
+            }
+            Vector2 tempDirection = new Vector2(direction.x + shift, direction.y + shift);
+            float angle = Mathf.Atan2(tempDirection.y, tempDirection.x) * Mathf.Rad2Deg;
+            GameObject spell = Instantiate(projectile, gun.transform.position, Quaternion.Euler(0f, 0f, angle));
+            spell.GetComponent<Rigidbody2D>().velocity = tempDirection * projectileForce;
+            yield return new WaitForSeconds(minRechargeTime);
+        }
+>>>>>>> Stashed changes
 
         if (meleAttack==true)
         {

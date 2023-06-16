@@ -132,6 +132,11 @@ public class PlayerController : MonoBehaviour
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
+<<<<<<< Updated upstream
+=======
+            shop.money += score;
+            Destroy(gameObject);
+>>>>>>> Stashed changes
             SceneManager.LoadScene("Game over");
         }
         if (currentHealth > maxHealth)
