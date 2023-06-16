@@ -9,6 +9,11 @@ TagManager:
   - spawner
   - Unit_enemy_schooting
   - Item
+  - miniMapObjects
+  - Spell
+  - canvas
+  - enemyGenerator
+  - healthBar
   layers:
   - Default
   - TransparentFX

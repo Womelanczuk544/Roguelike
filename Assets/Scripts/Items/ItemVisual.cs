@@ -10,8 +10,9 @@ public class ItemVisual : MonoBehaviour
     {
         if (collision.GameObject().tag == "Player")
         {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAA");
             collision.gameObject.GetComponent<InventoryController>().add(item);
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
 }

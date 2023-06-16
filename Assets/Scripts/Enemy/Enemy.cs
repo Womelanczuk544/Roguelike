@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private static int counter = 0; 
+    private static int enemyCounter = 0;
 
-    protected void onCreate()
+    public virtual void takeBloodDamage(float damage)
     {
-        counter++;
+
     }
-    protected void OnDestroy()
+    public virtual void takeDamage(float damage)
     {
-        counter--;
+        Debug.Log("coooooo");
     }
     public static int getCounter()
     {
-        return counter;
+        return enemyCounter;
+    }
+
+    public void onCreate()
+    {
+        enemyCounter++;
+    }
+
+    public void OnDestroy()
+    {
+        enemyCounter--;
     }
 }

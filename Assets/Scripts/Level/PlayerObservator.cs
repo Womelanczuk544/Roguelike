@@ -9,8 +9,9 @@ public class PlayerObservator : MonoBehaviour
     public EnemyObservator enemyObservator;
     public EnemyGenerator enemyGenerator;
     public DoorManager manager;
+
     private GenerateLabirynt generate;
-    private int playerPosOnMapX, playerPosOnMapY;
+    public int playerPosOnMapX, playerPosOnMapY;
     string currRoom;
     void Start()
     {
@@ -21,17 +22,15 @@ public class PlayerObservator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         StartCoroutine(generateFirstRoom());
-      /*  currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-        manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //true sciana*/
-                                                    //przejscie
     }
 
     IEnumerator generateFirstRoom()
     {
-        while (generate.numOfRoomsDone <= 0)
+        while (generate.finishedGenerating == false)
         {
             yield return null;
         }
+        Debug.Log("boss at: " + generate.bossRoom);
         currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
         manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //true sciana
 
@@ -40,46 +39,51 @@ public class PlayerObservator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<Transform>().position.x >= 12)
+        if (player.GetComponent<Transform>().position.x >= 19)
         {
-
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapX++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-<<<<<<< Updated upstream
-            enemyGenerator.remove();
-=======
+            //enemyGenerator.remove();
             Cleaner.clear();
->>>>>>> Stashed changes
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(-22, 0, 0));
-            if (currRoom[4] == '0')
+            player.GetComponent<Transform>().Translate(new Vector3(-36.5f, 0, 0));
+            if (currRoom[4] == '0') // currRoom[4] == 0 if it has not been cleared
             {
-                enemyGenerator.generate();
+                if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY) 
+                    enemyGenerator.generateBoss();
+                else
+                    enemyGenerator.generate("left");
+            }else if(generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0'); //<- TU DODAC LABIRYNT (NP)
             enemyObservator.resetOnce();
-
         }
-        if (player.GetComponent<Transform>().position.x <= -12)
+        if (player.GetComponent<Transform>().position.x <= -19.5)
         {
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapX--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-<<<<<<< Updated upstream
-            enemyGenerator.remove();
-=======
+            //enemyGenerator.remove();
             Cleaner.clear();
->>>>>>> Stashed changes
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(22, 0, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(36.5f, 0, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
+                if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+                    enemyGenerator.generateBoss();
+                else
+                enemyGenerator.generate("right");
+            }
+            else if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
@@ -91,38 +95,46 @@ public class PlayerObservator : MonoBehaviour
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapY++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-<<<<<<< Updated upstream
-            enemyGenerator.remove();
-=======
+            //enemyGenerator.remove();
             Cleaner.clear();
->>>>>>> Stashed changes
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(0, -22, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(0, -20.5f, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
+                if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+                    enemyGenerator.generateBoss();
+                else
+                    enemyGenerator.generate("down");
+            }
+            else if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
             }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }
-        if (player.GetComponent<Transform>().position.y <= -12)
+        if (player.GetComponent<Transform>().position.y <= -10.5)
         {
             currRoom = currRoom.Remove(currRoom.Length - 1);
             currRoom += '1';
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapY--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-<<<<<<< Updated upstream
-            enemyGenerator.remove();
-=======
+           // enemyGenerator.remove();
             Cleaner.clear();
->>>>>>> Stashed changes
             manager.clear();
-            player.GetComponent<Transform>().Translate(new Vector3(0, 22, 0));
+            player.GetComponent<Transform>().Translate(new Vector3(0, 20.5f, 0));
             if (currRoom[4] == '0')
             {
-                enemyGenerator.generate();
-            };
+                if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+                    enemyGenerator.generateBoss();
+                else
+                    enemyGenerator.generate("up");
+            }
+            else if (generate.boosRoomPos.X == playerPosOnMapX && generate.boosRoomPos.Y == playerPosOnMapY)
+            {
+                enemyGenerator.generateTeleport();
+            }
             manager.roomEnter(currRoom[0] == '0', currRoom[2] == '0', currRoom[1] == '0', currRoom[3] == '0');
             enemyObservator.resetOnce();
         }

@@ -9,24 +9,63 @@ public class SpellController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject projectile;
-    public float projectileForce;
+    //public float projectileForce;
     private Animator animator;
     public bool canShoot = true;
-    public bool meleAttack;
     public GameObject hands;
     public GameObject gun;
     public AudioSource shootSound;
 
+
+    private const float minRechargeTime = 0.1f;
+    private float projectileForce;
+    private int projectileSerie;
+    private float rechargeTime;
     private Vector3 offset = new(0, 0, 0);
-    //private Rigidbody2D rb;
+    private Rigidbody2D rb;
     private GameObject basicProjectile;
     private void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         basicProjectile = projectile;
-        meleAttack = true;
-       
+        projectileForce = 10;
+        projectileSerie = 1;
+        rechargeTime = 0.5f;
+    }
+
+    public void setProjectileForce(float _projectileForce)
+    {
+        projectileForce = _projectileForce;
+    }
+    public void setRechargeTime(float _rechargeTime)
+    {
+        rechargeTime= _rechargeTime;
+    }
+    public void setProjectileSerie(int _projectileSerie)
+    {
+        projectileSerie= _projectileSerie;
+    }
+
+    public float getProjectileForce()
+    {
+        return projectileForce;
+    }
+    public float getRechargeTime()
+    {
+        return rechargeTime;
+    }
+    public int getProjectileSerie()
+    {
+        return projectileSerie;
+    }
+
+    public void returnBasicGun()
+    {
+        projectileForce = 10;
+        projectileSerie = 1;
+        rechargeTime = 0.5f;
     }
 
     public void changeProjectile(GameObject newProjectile)
@@ -37,13 +76,7 @@ public class SpellController : MonoBehaviour
     public void returnBasicProjectile()
     {
         projectile = basicProjectile;
-        meleAttack = true;
     }
-    public void changeAttackType(bool type)
-    {
-        meleAttack = type;
-    }
-
     void Update() {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 myPos = transform.position + offset;
@@ -52,25 +85,18 @@ public class SpellController : MonoBehaviour
         if (Input.GetMouseButton(0) && canShoot)
         {
             StartCoroutine( Shoot(direction));
-        }
-   
+        }   
     }
-
     IEnumerator Shoot(Vector2 direction)
     {
         //animator.SetBool("isShooting", true);
         canShoot = false;
-        offset = gun.transform.localPosition;
-       
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GameObject spell = Instantiate(projectile, gun.transform.position, Quaternion.Euler(0f, 0f, angle));
+        //offset = gun.transform.localPosition;       
+
         shootSound.Play();
-<<<<<<< Updated upstream
-        
-=======
         for (int i = 0; i < projectileSerie; i++)
         {
-            float shift = UnityEngine.Random.Range(-0.03f * projectileSerie, 0.03f * projectileSerie);
+                float shift = UnityEngine.Random.Range(-0.03f * projectileSerie, 0.03f * projectileSerie);
             if(rb.velocity == Vector2.zero)
             {
                 shift = 0;
@@ -81,21 +107,8 @@ public class SpellController : MonoBehaviour
             spell.GetComponent<Rigidbody2D>().velocity = tempDirection * projectileForce;
             yield return new WaitForSeconds(minRechargeTime);
         }
->>>>>>> Stashed changes
 
-        if (meleAttack==true)
-        {
-            spell.GetComponent<Spell>().meleAttack(0.3f);
-            spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-        }
-        else
-            spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-
-        //spell.transform.right = direction; hmmm
-
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(rechargeTime);
         canShoot = true;
-
     }
-
 }

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.IO;
-using UnityEditor.Animations;
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Schooting_enemy : Enemy
 {
@@ -18,6 +17,7 @@ public class Schooting_enemy : Enemy
     private bool isAlive = true;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private float randomFrequency;
 
     public GameObject projectile;
     public float projectileForce;
@@ -36,6 +36,7 @@ public class Schooting_enemy : Enemy
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        randomFrequency = frequency + UnityEngine.Random.Range(-1f,1f);
     }
 
     // Update is called once per frame
@@ -55,21 +56,23 @@ public class Schooting_enemy : Enemy
         }
 
         time += Time.deltaTime;
-        if (time >= frequency)
+        if (time >= randomFrequency)
         {
-            GameObject spell = Instantiate(projectile, myPos + direction, Quaternion.identity);
+            GameObject spell = Instantiate(projectile, myPos + new Vector2( direction.x * 1.2f,0), Quaternion.identity);
             spell.GetComponent<Enemy_Spell>().setValues(minDmg, maxDmg);
             spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
             spell.transform.right = direction;
+
             time = 0;
         }
     }
 
-    public void takeDamage(float damage)
+    override public void takeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
         {
+            player.GetComponent<PlayerController>().getPoints(10);
             Destroy(gameObject);
         }
     }

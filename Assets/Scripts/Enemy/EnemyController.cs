@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : Enemy
@@ -31,11 +32,12 @@ public class EnemyController : Enemy
         movementDirection = player.transform.position - transform.position;
     }
 
-    public void takeDamage(float damage)
+    override public void takeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
         {
+            player.GetComponent<PlayerController>().getPoints(10);
             StartCoroutine(Die());
         }
     }

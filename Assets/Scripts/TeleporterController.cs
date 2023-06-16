@@ -49,10 +49,9 @@ public class TeleporterController : MonoBehaviour
                 StartCoroutine(teleport());
             }
         }
-        if (Input.GetKeyUp(KeyCode.Escape) && SceneManager.GetActiveScene() == SceneManager.GetSceneByName(""))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("Menu");
-            Destroy(player);
         }
     }
 
@@ -64,8 +63,8 @@ public class TeleporterController : MonoBehaviour
         animator.SetBool("isTeleporting", false);
 
         SceneManager.LoadScene("Andrzej_scene");//nie przenosi itemow
-        player.SetActive(true);
-        player.GetComponent<SpellController>().canShoot = true;
+       player.SetActive(true);
+
 
 
         if (enemyGenerator != null)

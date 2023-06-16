@@ -25,7 +25,7 @@ public class BaseEnemyAnimation : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-        else
+        else if(rb.velocity.x > 0)
         {
             spriteRenderer.flipX = false;
         }

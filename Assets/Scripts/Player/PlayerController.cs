@@ -4,43 +4,61 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-
     private Rigidbody2D rb;
     private Animator animator;
     private Vector3 movementDirection;
     private SpriteRenderer spriteRenderer;
     private bool isDashing = false;
     private bool canDash = true;
-    private float maxHealth;
-    private float currentHealth;
+    public float maxHealth;
+    public float currentHealth;
     private float damageMultiplayer;
     private SpellController spellController;
     private HealthBar healthbarScript;
+    private float scale;
+    private static PlayerController instance;
 
     public float speed = 1f;
     public float dashForce = 1f;
     public float dashiingTime = 2f;
     public float baseHealth;
-    public GameObject healthBar;
     public GameObject gun;
+    public static int score;
 
     // Start is called before the first frame update
     void Start()
     {
-        healthbarScript = healthBar.GetComponent<HealthBar>();
+       
+        scale = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spellController = GetComponent<SpellController>();
-        //rb.isKinematic = true;
 
         damageMultiplayer = 1;
         currentHealth = baseHealth;
         maxHealth = baseHealth;
-        healthbarScript.SetMaxHealth(baseHealth);
+        instance = this;
+    }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            // If not, set the current instance as the active instance
+            instance = this;
+            // Set this object as the root of the hierarchy so it won't be destroyed
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            // If an instance already exists, destroy this object
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -55,12 +73,12 @@ public class PlayerController : MonoBehaviour
         if (direction.x < 0)
         {
             //this.spriteRenderer.flipX = true;
-            transform.localScale = new Vector3(-5, 5, 5);
+            transform.localScale = new Vector3(-scale, scale, scale);
             gun.transform.localScale = new Vector3(-1, -1, 1);
         }
         else
         {
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(scale, scale, scale);
             gun.transform.localScale = new Vector3(1, 1, 1);
         }
 
@@ -120,23 +138,27 @@ public class PlayerController : MonoBehaviour
     {
         damageMultiplayer *= value;
     }
+    public void setDamage(float _damage)
+    {
+        damageMultiplayer = _damage;
+    }
 
     public float getDamageMultiplayer()
     {
         return damageMultiplayer;
     }
 
+    public void getPoints(int _score)
+    {
+        score += _score;
+    }
+
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
-        healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
-<<<<<<< Updated upstream
-=======
             shop.money += score;
-            Destroy(gameObject);
->>>>>>> Stashed changes
             SceneManager.LoadScene("Game over");
         }
         if (currentHealth > maxHealth)
@@ -160,8 +182,5 @@ public class PlayerController : MonoBehaviour
             rb.velocity = movementDirection.normalized * speed;
 
         }
-
-
     }
-
 }
