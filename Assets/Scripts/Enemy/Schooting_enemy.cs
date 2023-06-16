@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.IO;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Schooting_enemy : Enemy
 {
