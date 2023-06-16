@@ -10,15 +10,17 @@ public class TeleporterController : MonoBehaviour
     private bool isPlayerIn = false;
 
     public GameObject canvas;
-    public GameObject roomGenerator;
+    public GameObject enemyGenerator;
+    private GameObject mainRoomGenerator;
     private Animator animator;
     private GameObject player;
     void Start()
     {
         animator = GetComponent<Animator>();
         canvas = GameObject.FindWithTag("canvas");
-        roomGenerator = GameObject.FindWithTag("enemyGenerator");
+        enemyGenerator = GameObject.FindWithTag("enemyGenerator");
         player = GameObject.FindWithTag("Player");
+        mainRoomGenerator = GameObject.Find("MainRoomGenerator");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,10 +62,14 @@ public class TeleporterController : MonoBehaviour
         player.SetActive(false) ;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         animator.SetBool("isTeleporting", false);
-        SceneManager.LoadScene("Andrzej_scene");
-        //player.SetActive(true);
-        if (roomGenerator != null)
-            roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
+
+        SceneManager.LoadScene("Andrzej_scene");//nie przenosi itemow
+       player.SetActive(true);
+
+
+
+        if (enemyGenerator != null)
+            enemyGenerator.GetComponent<EnemyGenerator>().nextLevel();
     }
 
 }

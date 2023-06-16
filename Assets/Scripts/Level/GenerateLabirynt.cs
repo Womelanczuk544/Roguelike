@@ -57,6 +57,12 @@ public class GenerateLabirynt : MonoBehaviour
 
     void Start()
     {
+        generateLabirynt();
+    }
+
+
+    public void generateLabirynt()
+    {
         miniMapObjects = transform.Find("miniMapObjects").gameObject;
 
         for (int i = 0; i <= mapMaxSize; i++)
@@ -71,7 +77,6 @@ public class GenerateLabirynt : MonoBehaviour
         StartCoroutine(AddRooms(startingPosX, startingPosY, 10));
         StartCoroutine(WaitForDone());
     }
-
     IEnumerator WaitForDone()
     {
         while (numWaiting > 0)

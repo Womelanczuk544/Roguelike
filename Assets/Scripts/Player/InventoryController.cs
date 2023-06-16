@@ -5,14 +5,29 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     private List<Item> inventory;
+    private static InventoryController instance;
     void Start()
     {
         inventory = new List<Item>();
     }
+/*    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }*/
+
     public void add(Item item)
     {
         inventory.Add(item);
         item.onAdd();
+
     }
     public void dropAllItems()
     {
