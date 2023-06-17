@@ -22,10 +22,10 @@ public class PlayerController : MonoBehaviour
     private HealthBar healthbarScript;
     private float scale;
 
-    public float speed = 1f;
-    public float dashForce = 1f;
-    public float dashiingTime = 2f;
-    public float baseHealth;
+    public float speed = 4.5f;
+    public float dashForce = 30f;
+    public float dashiingTime = 0.09f;
+    public float baseHealth = 100f;
     public GameObject healthBar;
     public GameObject gun;
     public static int score;
@@ -168,5 +168,18 @@ public class PlayerController : MonoBehaviour
             rb.velocity = movementDirection.normalized * speed;
 
         }
+    }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        speed = data.speed;
+        dashForce = data.dashForce;
+        dashForce = data.dashiingTime;
+        baseHealth = data.baseHealth;
     }
 }
