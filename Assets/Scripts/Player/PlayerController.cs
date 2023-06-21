@@ -162,8 +162,9 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         rb.velocity = movementDirection.normalized * dashForce;
         yield return new WaitForSeconds(dashiingTime);
-        canDash = true;
         isDashing = false;
+       // yield return new WaitForSeconds(2); trzeba to odkomentowaæ do faktycznej rozgrywki s³ó¿y do opó¿niania kolejnego dasha
+        canDash = true;
     }
 
     private void FixedUpdate()

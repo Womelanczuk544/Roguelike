@@ -7,7 +7,16 @@ public class shop : MonoBehaviour
     public static int money;
     public GameObject text;
     private bool canOpenShop = false;
-    // Start is called before the first frame update
+    private bool canCloseShop = false;
+    public Canvas shopCanvas;
+    public Canvas firstLocationCanvas;
+
+
+    private void Start()
+    {
+        shopCanvas.enabled= false;
+        firstLocationCanvas.enabled = true;
+    }
     public void SaveShop()
     {
         SaveSystem.SaveShop(this);
@@ -32,9 +41,23 @@ public class shop : MonoBehaviour
 
     private void Update()
     {
-        if(canOpenShop && Input.GetKeyDown(KeyCode.E))
+        if(canOpenShop && Input.GetKeyDown(KeyCode.E) && !canCloseShop)
         {
+            canCloseShop= true;
             Debug.Log("Shop opened");
+            shopCanvas.enabled = true;
+            firstLocationCanvas.enabled = false;
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled=false;
+            GameObject.FindWithTag("Player").GetComponent<SpellController>().enabled=false;
+        }
+        else if (canOpenShop && Input.GetKeyDown(KeyCode.E) && canCloseShop)
+        {
+            canCloseShop = false;
+            Debug.Log("Shop opened");
+            shopCanvas.enabled = false;
+            firstLocationCanvas.enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<SpellController>().enabled = true;
         }
     }
 
