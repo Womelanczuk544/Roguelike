@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    private List<Item> inventory;
+    public List<Item> inventory;
     void Start()
     {
         inventory = new List<Item>();
+        if(SaveSystem.LoadInventory() != null)
+           foreach (Item item in SaveSystem.LoadInventory())
+            {
+                add(item);
+            }
     }
     public void add(Item item)
     {

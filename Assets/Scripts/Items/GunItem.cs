@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
-
+[System.Serializable]
 public class GunItem : Item
 {
     public float projectileForce;

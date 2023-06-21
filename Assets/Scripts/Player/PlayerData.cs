@@ -12,6 +12,7 @@ public class PlayerData
     public static int money;
     public float currentHealth;
     public int level;
+    public List<Item> inventory;
 
     public PlayerData(PlayerController player)
     {
@@ -20,6 +21,10 @@ public class PlayerData
         dashiingTime= player.dashiingTime;
         baseHealth= player.baseHealth;
         currentHealth = player.currentHealth;
+    }
+    public PlayerData(List<Item> inventory)
+    {
+        this.inventory = inventory;
     }
     public PlayerData(shop shop)
     {

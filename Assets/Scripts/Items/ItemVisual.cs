@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+[System.Serializable]
 public class ItemVisual : MonoBehaviour
 {
     public Item item;
@@ -10,9 +10,8 @@ public class ItemVisual : MonoBehaviour
     {
         if (collision.GameObject().tag == "Player")
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAA");
             collision.gameObject.GetComponent<InventoryController>().add(item);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

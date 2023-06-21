@@ -53,6 +53,7 @@ public class TeleporterController : MonoBehaviour
 
     IEnumerator teleport()
     {
+            
         animator.SetBool("isTeleporting", true);
         player.SetActive(false) ;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
@@ -64,7 +65,8 @@ public class TeleporterController : MonoBehaviour
             SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
             roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
             SaveSystem.SaveLevel(roomGenerator.GetComponent<EnemyGenerator>().getCurrnetLevel());
-
+            SaveSystem.SaveInventory(player.GetComponent<InventoryController>().inventory);
+    
         }
     }
 

@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         spellController = GetComponent<SpellController>();
 
         damageMultiplayer = 1;
-        currentHealth = baseHealth;
+        //currentHealth = baseHealth;
         maxHealth = baseHealth;
         healthbarScript.SetMaxHealth(baseHealth);
     }
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         //spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+        healthbarScript.SetHealth(currentHealth);
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 myPos = transform.position;
@@ -148,6 +149,7 @@ public class PlayerController : MonoBehaviour
             shop.money += score;
             currentHealth = maxHealth;
             SaveSystem.DeleteLevel();
+            SaveSystem.DeleteInventory();
             SceneManager.LoadScene("Game over");  
         }
         if (currentHealth > maxHealth)
