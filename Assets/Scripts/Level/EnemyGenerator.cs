@@ -23,7 +23,7 @@ public class EnemyGenerator : MonoBehaviour
     public void generate(string cameFrom)
     {
         playerIsInBossRoom = false;
-        int numOfEnemies = UnityEngine.Random.Range(2 + currentLevel, 4 + currentLevel);
+        int numOfEnemies = UnityEngine.Random.Range(3 + (int)(currentLevel * 1.3f), 4 + (int)(currentLevel * 1.3f));
         float minX = (cameFrom == "left") ? -9 : -17;
         float maxX = (cameFrom == "right") ? 9 : 16;
         float minY = (cameFrom == "down") ? -1 : -9;
@@ -71,7 +71,7 @@ public class EnemyGenerator : MonoBehaviour
         else if (boss.name == "Base_enemy_spawner(Clone)")
         {
             boss.GetComponent<spawner>().health = health;
-            boss.GetComponent<spawner>().spawnTimer = 2 / currentLevel;
+            boss.GetComponent<spawner>().spawnTimer = 2f / currentLevel;
             boss.GetComponent<spawner>().maxSpanws = 4 + currentLevel;
             boss.GetComponent<spawner>().minDamage = minDmg;
             boss.GetComponent<spawner>().maxDamage = maxDmg;
@@ -83,7 +83,7 @@ public class EnemyGenerator : MonoBehaviour
             boss.GetComponent<Schooting_enemy>().minDmg = minDmg;
             boss.GetComponent<Schooting_enemy>().maxDmg = maxDmg;
             boss.GetComponent<Schooting_enemy>().projectileForce = 10 + 2 * currentLevel;
-            boss.GetComponent<Schooting_enemy>().frequency = 2 / currentLevel;
+            boss.GetComponent<Schooting_enemy>().frequency = 2f / currentLevel;
         }
     }
 
@@ -91,5 +91,10 @@ public class EnemyGenerator : MonoBehaviour
     {
         GameObject tp = Instantiate(teleport, new Vector3(0, 0, 0), Quaternion.identity);
         Cleaner.add(tp);
+    }
+
+    public int getCurrnetLevel()
+    {
+        return currentLevel;
     }
 }
