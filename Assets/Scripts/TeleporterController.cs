@@ -49,10 +49,6 @@ public class TeleporterController : MonoBehaviour
                 StartCoroutine(teleport());
             }
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Menu");
-        }
     }
 
     IEnumerator teleport()
@@ -65,7 +61,10 @@ public class TeleporterController : MonoBehaviour
         //player.SetActive(true);
         if (roomGenerator != null)
         {
+            SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
+            SaveSystem.SaveLevel(roomGenerator.GetComponent<EnemyGenerator>().getCurrnetLevel());
             roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
+
         }
     }
 

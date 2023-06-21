@@ -11,6 +11,7 @@ public class PlayerData
     public float baseHealth;
     public static int money;
     public float currentHealth;
+    public int level;
 
     public PlayerData(PlayerController player)
     {
@@ -23,6 +24,11 @@ public class PlayerData
     public PlayerData(shop shop)
     {
         money = shop.money;
+    }
+
+    public PlayerData(int tpLevel)
+    {
+        level = tpLevel;
     }
 
     public int getMoney ()

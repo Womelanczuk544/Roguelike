@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             shop.money += score;
             currentHealth = maxHealth;
+            SaveSystem.DeleteLevel();
             SceneManager.LoadScene("Game over");  
         }
         if (currentHealth > maxHealth)

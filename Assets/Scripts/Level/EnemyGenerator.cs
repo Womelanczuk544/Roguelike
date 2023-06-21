@@ -18,7 +18,10 @@ public class EnemyGenerator : MonoBehaviour
 
     private void Start()
     {
-
+        if(SaveSystem.levelExist())
+        {
+            SaveSystem.LoadLevel().level= currentLevel;
+        }
     }
     public void generate(string cameFrom)
     {
@@ -92,7 +95,6 @@ public class EnemyGenerator : MonoBehaviour
         GameObject tp = Instantiate(teleport, new Vector3(0, 0, 0), Quaternion.identity);
         Cleaner.add(tp);
     }
-
     public int getCurrnetLevel()
     {
         return currentLevel;

@@ -8,8 +8,15 @@ public class PlayButton : MonoBehaviour
 {
     public void GoToScene(string sceneName)
     {
+        if (SaveSystem.levelExist())
+        {
+            SceneManager.LoadScene("Andrzej_scene");
+        }
+        else
+        {
         SceneManager.LoadScene(sceneName);
         Debug.Log("ciœniesz mnie chopie");
+        }
     }
 
     public void QuitApp()
