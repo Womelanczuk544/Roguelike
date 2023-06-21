@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28efe76cc184716418c8945dd75a7e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 40
   spawnTimer: 5
   enemyPrefab: {fileID: 3936304305723331706, guid: 532d4a39d532c7345a5c321fef6e448f, type: 3}
   spawnPosition: {fileID: 4564801374242052876}

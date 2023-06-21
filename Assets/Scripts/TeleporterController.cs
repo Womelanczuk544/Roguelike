@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -63,7 +64,9 @@ public class TeleporterController : MonoBehaviour
         SceneManager.LoadScene("Andrzej_scene");
         //player.SetActive(true);
         if (roomGenerator != null)
+        {
             roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
+        }
     }
 
 }

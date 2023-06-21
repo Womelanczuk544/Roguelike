@@ -13,6 +13,7 @@ TagManager:
   - Spell
   - canvas
   - enemyGenerator
+  - LevelNum
   layers:
   - Default
   - TransparentFX

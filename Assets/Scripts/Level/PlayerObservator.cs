@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerObservator : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerObservator : MonoBehaviour
     public EnemyObservator enemyObservator;
     public EnemyGenerator enemyGenerator;
     public DoorManager manager;
+
+    private GameObject levelNumText;
 
     private GenerateLabirynt generate;
     public int playerPosOnMapX, playerPosOnMapY;
@@ -20,6 +23,9 @@ public class PlayerObservator : MonoBehaviour
         playerPosOnMapX = generate.startingPosX;
         playerPosOnMapY = generate.startingPosY;
         player = GameObject.FindGameObjectWithTag("Player");
+        levelNumText = GameObject.FindWithTag("LevelNum");
+
+        levelNumText.GetComponent<TextMeshProUGUI>().text ="Level: " + enemyGenerator.getCurrnetLevel().ToString();
 
         StartCoroutine(generateFirstRoom());
     }
