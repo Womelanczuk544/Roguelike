@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
     private float maxHealth;
-    private float currentHealth;
     private float damageMultiplayer;
     private SpellController spellController;
     private HealthBar healthbarScript;
     private float scale;
 
+    public float currentHealth;
     public float speed = 4.5f;
     public float dashForce = 30f;
     public float dashiingTime = 0.09f;
@@ -146,7 +146,8 @@ public class PlayerController : MonoBehaviour
         if (currentHealth < 0)
         {
             shop.money += score;
-            SceneManager.LoadScene("Game over");
+            currentHealth = maxHealth;
+            SceneManager.LoadScene("Game over");  
         }
         if (currentHealth > maxHealth)
             currentHealth = maxHealth; //heal works as damage
@@ -180,13 +181,11 @@ public class PlayerController : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
         if (data != null)
         {
-            Debug.Log(data.speed);
             speed = data.speed;
-            Debug.Log(speed);
-            dashForce = data.dashForce;
-            dashForce = data.dashiingTime;
+            dashForce= data.dashForce;
+            dashiingTime = data.dashiingTime;
             baseHealth = data.baseHealth;
-            Debug.Log("³aduja go ni");
+            currentHealth= data.currentHealth;
         }
     }
 }

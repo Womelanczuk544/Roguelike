@@ -10,13 +10,15 @@ public class PlayerData
     public float dashiingTime;
     public float baseHealth;
     public static int money;
+    public float currentHealth;
 
     public PlayerData(PlayerController player)
     {
-        speed = player.speed; 
+        speed = player.speed;
         dashForce = player.dashForce;
-        dashForce= player.dashiingTime;
+        dashiingTime= player.dashiingTime;
         baseHealth= player.baseHealth;
+        currentHealth = player.currentHealth;
     }
     public PlayerData(shop shop)
     {
