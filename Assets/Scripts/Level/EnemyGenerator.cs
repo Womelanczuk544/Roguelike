@@ -20,7 +20,11 @@ public class EnemyGenerator : MonoBehaviour
     {
         if(SaveSystem.levelExist())
         {
-            SaveSystem.LoadLevel().level= currentLevel;
+            currentLevel = SaveSystem.LoadLevel().level;
+        }
+        else
+        {
+            currentLevel= 1;
         }
     }
     public void generate(string cameFrom)

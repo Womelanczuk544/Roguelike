@@ -101,6 +101,7 @@ public class SaveSystem
     public static bool levelExist()
     {
         string path3 = Application.persistentDataPath + "/level.resticted";
+        Debug.Log(path3);
         if (File.Exists(path3))
         {
             return true;
