@@ -13,6 +13,7 @@ TagManager:
   - Spell
   - canvas
   - enemyGenerator
+  - Shop
   layers:
   - Default
   - TransparentFX

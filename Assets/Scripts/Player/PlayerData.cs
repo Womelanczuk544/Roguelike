@@ -17,6 +17,14 @@ public class PlayerData
         dashForce = player.dashForce;
         dashForce= player.dashiingTime;
         baseHealth= player.baseHealth;
-        money= shop.money;
+    }
+    public PlayerData(shop shop)
+    {
+        money = shop.money;
+    }
+
+    public int getMoney ()
+    {
+        return money;
     }
 }

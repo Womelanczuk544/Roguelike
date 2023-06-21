@@ -6,14 +6,13 @@ public class shop : MonoBehaviour
 {
     public static int money;
     // Start is called before the first frame update
-    void Start()
+    public void SaveShop()
     {
-        
+        SaveSystem.SaveShop(this);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void LoadShop()
     {
-        
+        PlayerData data = SaveSystem.LoadShop();
+        money = data.getMoney();
     }
 }

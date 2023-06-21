@@ -26,13 +26,14 @@ public class PlayerController : MonoBehaviour
     public float dashForce = 30f;
     public float dashiingTime = 0.09f;
     public float baseHealth = 100f;
+    public static int score;
     public GameObject healthBar;
     public GameObject gun;
-    public static int score;
 
     // Start is called before the first frame update
     void Start()
     {
+        LoadPlayer();
         healthbarScript = healthBar.GetComponent<HealthBar>();
         scale = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
@@ -177,9 +178,15 @@ public class PlayerController : MonoBehaviour
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        speed = data.speed;
-        dashForce = data.dashForce;
-        dashForce = data.dashiingTime;
-        baseHealth = data.baseHealth;
+        if (data != null)
+        {
+            Debug.Log(data.speed);
+            speed = data.speed;
+            Debug.Log(speed);
+            dashForce = data.dashForce;
+            dashForce = data.dashiingTime;
+            baseHealth = data.baseHealth;
+            Debug.Log("³aduja go ni");
+        }
     }
 }
