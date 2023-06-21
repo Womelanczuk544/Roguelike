@@ -14,6 +14,7 @@ TagManager:
   - canvas
   - enemyGenerator
   - Shop
+  - LevelNum
   layers:
   - Default
   - TransparentFX
