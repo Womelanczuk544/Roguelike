@@ -5,10 +5,10 @@ using static UnityEngine.Rendering.DebugUI;
 [System.Serializable]
 public class PillItem : Item
 {
-    private float damage;
-    private float speed;
-    private float bonusHp;
-    private float heal;
+    private float damage = 1;
+    private float speed = 1;
+    private float bonusHp =0;
+    private float heal=0;
 
     private void Start()
     {
