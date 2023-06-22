@@ -147,7 +147,10 @@ public class PlayerController : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        currentHealth -= armor*damage;
+        if (damage < 0) 
+            currentHealth -= damage;
+        else
+            currentHealth -= armor*damage;
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {

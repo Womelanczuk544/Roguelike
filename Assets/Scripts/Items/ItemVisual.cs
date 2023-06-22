@@ -6,12 +6,43 @@ using UnityEngine;
 public class ItemVisual : MonoBehaviour
 {
     public Item item;
+    public GameObject canvas;
+
+    private bool isPlayerIn = false;
+    private GameObject player;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        if (isPlayerIn)
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                player.GetComponent<InventoryController>().add(item);
+                gameObject.SetActive(false);
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GameObject().tag == "Player")
         {
-            collision.gameObject.GetComponent<InventoryController>().add(item);
-            gameObject.SetActive(false);
+            canvas.transform.Find("Text").gameObject.SetActive(true);
+            isPlayerIn = true;
+            
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GameObject().tag == "Player")
+        {
+            isPlayerIn = false;
+            canvas.transform.Find("Text").gameObject.SetActive(false);
+        }
+    }
+
 }

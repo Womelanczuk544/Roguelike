@@ -12,6 +12,7 @@ public class GunItem : Item
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        classId = 2;
     }
     public override void onAdd()
     {

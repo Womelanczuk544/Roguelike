@@ -19,7 +19,8 @@ public class PillItem : Item
             case 0: damage = 1.1f; break;
             case 1: speed = 1.1f; break;
             case 2: bonusHp = 10f; break;
-            case 3: heal = 20f; break;
+            case 3: damage = 1.1f; break;
+            case 4: speed = 1.1f; break;
         }
     }
     public override void onAdd()

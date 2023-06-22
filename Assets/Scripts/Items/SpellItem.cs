@@ -9,6 +9,7 @@ public class SpellItem : Item
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        classId = 1;
     }
     public override void onAdd()
     {

@@ -12,6 +12,7 @@ public class ArmorItem : Item
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        classId = 3;
     }
     public override void onAdd()
     {
