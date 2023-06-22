@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private HealthBar healthbarScript;
     private float scale;
 
+    public float dashRechargeTime = 2;
+    public float armor = 1.0f;
     public float currentHealth;
     public float speed = 4.5f;
     public float dashForce = 30f;
@@ -110,10 +112,13 @@ public class PlayerController : MonoBehaviour
     {
         maxHealth += value;
         if (is_healed) currentHealth += value;
+        if (currentHealth > maxHealth) { currentHealth = maxHealth; }
         healthbarScript.SetMaxHealth(maxHealth);
         healthbarScript.SetHealth(currentHealth);
-        Debug.Log(currentHealth);
-        Debug.Log(maxHealth);
+    }
+    public void changeDashingRecharge(float value)
+    {
+        dashRechargeTime *= value;
     }
 
     public void changeSpeed(float value)
@@ -142,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        currentHealth -= damage;
+        currentHealth -= armor*damage;
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
@@ -163,7 +168,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = movementDirection.normalized * dashForce;
         yield return new WaitForSeconds(dashiingTime);
         isDashing = false;
-       // yield return new WaitForSeconds(2); trzeba to odkomentowaæ do faktycznej rozgrywki s³ó¿y do opó¿niania kolejnego dasha
+        yield return new WaitForSeconds(dashRechargeTime);
         canDash = true;
     }
 

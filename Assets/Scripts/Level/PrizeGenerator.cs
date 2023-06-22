@@ -5,24 +5,9 @@ using static UnityEditor.UIElements.ToolbarMenu;
 
 public class PrizeGenerator : MonoBehaviour
 {
-    //private int prizeId;
-
-    public GameObject variant1; //Tu zmieniac
-    public GameObject variant2;
-    public GameObject variant3;
-    public GameObject variant4;
-    public GameObject variant5;
-    public GameObject gvariant1; //Tu zmieniac
-    public GameObject gvariant2;
-    public GameObject gvariant3;
-    public GameObject gvariant4;
-    public GameObject gvariant5; // co to tablica xd
-
     public GameObject teleport;
 
-    private int variantCount = 10; //tu zmienic
-
-    private List<GameObject> prizes;
+    public List<GameObject> prizes;
 
     private GameObject active1 = null;
     private GameObject active2 = null;
@@ -30,13 +15,13 @@ public class PrizeGenerator : MonoBehaviour
     private Vector3 xOffset = new Vector3(3.0f, 0, 0);
     public void generate()
     {
-        int index1 = UnityEngine.Random.Range(0, variantCount);
+        int index1 = UnityEngine.Random.Range(0, prizes.Count);
         active1 = Instantiate(prizes[index1]);
         active1.transform.position = xOffset;
-        int index2 = UnityEngine.Random.Range(0, variantCount);
+        int index2 = UnityEngine.Random.Range(0, prizes.Count);
         if (index1 == index2)
             index2++;
-        if (index2 == variantCount)
+        if (index2 == prizes.Count)
             index2 = 0;
         active2 = Instantiate(prizes[index2]);
         active2.transform.position = -xOffset;
@@ -55,36 +40,30 @@ public class PrizeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prizes = new List<GameObject>();    //tu dodac
-        prizes.Add(variant1);
-        prizes.Add(variant2);
-        prizes.Add(variant3);
-        prizes.Add(variant4);
-        prizes.Add(variant5);
-        prizes.Add(gvariant1);
-        prizes.Add(gvariant2);
-        prizes.Add(gvariant3);
-        prizes.Add(gvariant4);
-        prizes.Add(gvariant5);
     }
     // Update is called once per frame
 
     private void Update()
     {
-        if (active1 == null && active2 == null)
-            return;
-        if (active1 == null)
+        if (active1 == null && active2 == null) return;
+        if (active1 != null && active1.active == false)
         {            
-            if (active2 !=null)
-                Destroy(active2);
+            Destroy(active2);
             active2 = null;
+        }
+        if (active2 != null && active2.active == false)
+        {
+            Destroy(active1);
+            active1 = null;
+        }
+        /*if (active1 == null)
+        {
+            active2.SetActive(false);
         }
         if (active2 == null)
         {
-            if (active1 != null)
-                Destroy(active1);
-            active1 = null;
-        }
+            active1.SetActive(false);
+        }*/
     }
 
     public void generateTeleport()
@@ -97,12 +76,10 @@ public class PrizeGenerator : MonoBehaviour
         if (active1 != null)
         {
             Destroy(active1);
-            Destroy(active2);
         }        
         if (active2 != null)
         {
             Destroy(active2);
-            Destroy(active1);
         }
         active2 = null;
         active1 = null;
