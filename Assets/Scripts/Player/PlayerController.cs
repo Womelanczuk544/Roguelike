@@ -121,6 +121,13 @@ public class PlayerController : MonoBehaviour
 
     public void boostMaxHealth(float value, bool is_healed)
     {
+        if (maxHealth < 230)
+        {
+            float lenghtChanged = value*3.5f + maxHealth + 250;
+            GameObject.Find("Border").GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, lenghtChanged);
+            Debug.Log(maxHealth);
+            
+        }
         maxHealth += value;
         if (is_healed) currentHealth += value;
         healthbarScript.SetMaxHealth(maxHealth);
@@ -155,14 +162,34 @@ public class PlayerController : MonoBehaviour
 
     public void takeDamage(float damage)
     {
+<<<<<<< Updated upstream
         currentHealth -= damage;
         if (currentHealth < 0)
         {
             shop.money += score;
+=======
+        if (damage < 0)//heal works as damage
+        {
+            currentHealth -= damage;
+            if (currentHealth > maxHealth)
+                currentHealth = maxHealth;
+        }
+        else
+        {
+
+            currentHealth -= armor * damage;
+        }
+        healthbarScript.SetHealth(currentHealth);
+        if (currentHealth < 0)
+        {
+            shop.money += score;
+            currentHealth = maxHealth;
+            SaveSystem.DeleteLevel();
+            SaveSystem.DeleteInventory();
+>>>>>>> Stashed changes
             SceneManager.LoadScene("Game over");
         }
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth; //heal works as damage
+
     }
 
     private IEnumerator Dash()
@@ -183,4 +210,24 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        if (data != null)
+        {
+            speed = data.speed;
+            dashForce = data.dashForce;
+            dashiingTime = data.dashiingTime;
+            baseHealth = data.baseHealth;
+            currentHealth = data.currentHealth;
+        }
+    }
+>>>>>>> Stashed changes
 }
