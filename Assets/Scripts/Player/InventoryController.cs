@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
     public List<Item> inventory;
+    public List<Item> allItemes;
     void Start()
     {
         inventory = new List<Item>();
-        if(SaveSystem.LoadInventory() != null)
-           foreach (Item item in SaveSystem.LoadInventory())
-           {
-                add(item);
-           }
+        if (SaveSystem.LoadInventory() != null)
+        {
+            List<string> temp = SaveSystem.LoadInventory() as List<string>;
+            for(int i = 0; i < temp.Count; i++)
+            {
+                foreach(Item item in allItemes)
+                {
+                    if (item.name == temp[i])
+                    {
+                        add(item);
+                    }
+                }
+            }
+        }
     }
     public void add(Item item)
     {

@@ -46,17 +46,21 @@ public class SaveSystem
 
     public static void SaveInventory(List<Item> inventory)
     {
+        List<String> inventoryNames = new List<String>();
+        foreach (Item item in inventory)
+        {
+            inventoryNames.Add(item.name);
+        }
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/inventory.resticted";
-        FileStream stream;
-        stream = new FileStream(path, FileMode.Create);
-        
-        formatter.Serialize(stream, inventory);
+        string path = Path.Combine(Application.persistentDataPath, "/inventory.restricted");
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        formatter.Serialize(stream, inventoryNames);
         stream.Close();
     }
-    public static List<Item> LoadInventory()
+    public static List<String> LoadInventory()
     {
-        string path = Application.persistentDataPath + "/inventory.resticted";
+        string path = Path.Combine(Application.persistentDataPath, "/inventory.restricted");
         Debug.Log("Loading inventory from: " + path);
 
         if (File.Exists(path))
@@ -65,7 +69,7 @@ public class SaveSystem
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
-                List<Item> data = formatter.Deserialize(stream) as List<Item>;
+                List<String> data = formatter.Deserialize(stream) as List<String>;
                 stream.Close();
 
                 Debug.Log("Inventory data loaded successfully.");

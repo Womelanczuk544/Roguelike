@@ -46,6 +46,7 @@ public class TeleporterController : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
+                SaveSystem.SaveInventory(player.GetComponent<InventoryController>().inventory);
                 StartCoroutine(teleport());
             }
         }
@@ -58,6 +59,8 @@ public class TeleporterController : MonoBehaviour
         player.SetActive(false) ;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         animator.SetBool("isTeleporting", false);
+
+   
         SceneManager.LoadScene("Andrzej_scene");
         //player.SetActive(true);
         if (roomGenerator != null)
@@ -65,7 +68,6 @@ public class TeleporterController : MonoBehaviour
             SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
             roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
             SaveSystem.SaveLevel(roomGenerator.GetComponent<EnemyGenerator>().getCurrnetLevel());
-            SaveSystem.SaveInventory(player.GetComponent<InventoryController>().inventory);
     
         }
     }
