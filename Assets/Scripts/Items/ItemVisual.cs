@@ -23,7 +23,8 @@ public class ItemVisual : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.E))
             {
                 player.GetComponent<InventoryController>().add(item);
-                gameObject.SetActive(false);
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
     }

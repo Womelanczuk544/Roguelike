@@ -14,8 +14,14 @@ public class shop : MonoBehaviour
 
     private void Start()
     {
-        shopCanvas.enabled= false;
-        firstLocationCanvas.enabled = true;
+        if(shopCanvas != null)
+        {
+            shopCanvas.enabled = false;
+        }
+        if(firstLocationCanvas != null)
+        {
+            firstLocationCanvas.enabled = true;
+        }
     }
     public void SaveShop()
     {

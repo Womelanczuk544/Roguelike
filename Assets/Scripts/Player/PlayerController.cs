@@ -110,6 +110,13 @@ public class PlayerController : MonoBehaviour
 
     public void boostMaxHealth(float value, bool is_healed)
     {
+        if (maxHealth < 230)
+        {
+            float lenghtChanged = value * 3.5f + maxHealth + 250;
+            GameObject.Find("Border").GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, lenghtChanged);
+            Debug.Log(maxHealth);
+
+        }
         maxHealth += value;
         if (is_healed) currentHealth += value;
         if (currentHealth > maxHealth) { currentHealth = maxHealth; }
