@@ -47,6 +47,7 @@ public class TeleporterController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.E))
             {
                 SaveSystem.SaveInventory(player.GetComponent<InventoryController>().inventory);
+                player.GetComponent<InventoryController>().dropAllItems();
                 StartCoroutine(teleport());
             }
         }

@@ -11,7 +11,7 @@ public class SaveSystem
     public static void SavePlayer(PlayerController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.resticted";
+        string path = Application.persistentDataPath + "/player.restricted";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
@@ -23,7 +23,7 @@ public class SaveSystem
     public static void SaveShop(shop shop)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/shop.resticted";
+        string path = Application.persistentDataPath + "/shop.restricted";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(shop);
@@ -35,7 +35,7 @@ public class SaveSystem
     public static void SaveLevel(int tpLevel)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/level.resticted";
+        string path = Application.persistentDataPath + "/level.restricted";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(tpLevel);
@@ -60,7 +60,7 @@ public class SaveSystem
     }
     public static List<String> LoadInventory()
     {
-        string path = Path.Combine(Application.persistentDataPath, "/inventory.restricted");
+        string path = Application.persistentDataPath + "/inventory.restricted";
         Debug.Log("Loading inventory from: " + path);
 
         if (File.Exists(path))
@@ -89,7 +89,7 @@ public class SaveSystem
     }
     public static void DeleteInventory()
     {
-        string path = Application.persistentDataPath + "/inventory.resticted";
+        string path = Application.persistentDataPath + "/inventory.restricted";
         if (File.Exists(path))
         {
             File.Delete(path);
@@ -102,7 +102,7 @@ public class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player.resticted";
+        string path = Application.persistentDataPath + "/player.restricted";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -120,7 +120,7 @@ public class SaveSystem
 
     public static PlayerData LoadShop()
     {
-        string path = Application.persistentDataPath + "/shop.resticted";
+        string path = Application.persistentDataPath + "/shop.restricted";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -138,7 +138,7 @@ public class SaveSystem
 
     public static PlayerData LoadLevel()
     {
-        string path = Application.persistentDataPath + "/level.resticted";
+        string path = Application.persistentDataPath + "/level.restricted";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -156,7 +156,7 @@ public class SaveSystem
 
     public static bool levelExist()
     {
-        string path3 = Application.persistentDataPath + "/level.resticted";
+        string path3 = Application.persistentDataPath + "/level.restricted";
         if (File.Exists(path3))
         {
             return true;
@@ -169,16 +169,16 @@ public class SaveSystem
 
     public static void DeleteLevel()
     {
-        string path3 = Application.persistentDataPath + "/level.resticted";
+        string path3 = Application.persistentDataPath + "/level.restricted";
         if (File.Exists(path3))
             File.Delete(path3);
     }
 
     public static void DeleteSave()
     {
-        string path1 = Application.persistentDataPath + "/player.resticted";
-        string path2 = Application.persistentDataPath + "/shop.resticted";
-        string path3 = Application.persistentDataPath + "/level.resticted";
+        string path1 = Application.persistentDataPath + "/player.restricted";
+        string path2 = Application.persistentDataPath + "/shop.restricted";
+        string path3 = Application.persistentDataPath + "/level.restricted";
         if (File.Exists(path1))
             File.Delete(path1);
         if (File.Exists(path2))

@@ -12,19 +12,18 @@ public class InventoryController : MonoBehaviour
         if (SaveSystem.LoadInventory() != null)
         {
             List<string> temp = SaveSystem.LoadInventory() as List<string>;
-            for(int i = 0; i < temp.Count; i++)
-            {
-                GameObject prefab = Resources.Load<GameObject>(temp[i]);
-                GameObject newObject = Instantiate(prefab);
-                //foreach(Item item in allItemes)
-                //{
-                //    if (item.name == temp[i])
-                //    {
-                //        add(item);
-                //    }
-                //}
-            }
+            StartCoroutine(itemAdd(temp));
         }
+    }
+    IEnumerator itemAdd(List<string> temp)
+    {
+        for (int i = 0; i < temp.Count; i++)
+        {
+            Debug.Log(temp[i]+" siema byku dodaje itemka");
+            GameObject prefab = Resources.Load<GameObject>(temp[i]);
+            add(prefab.GetComponent<Item>());
+        }
+        yield return null;
     }
     public void add(Item item)
     {
@@ -40,6 +39,7 @@ public class InventoryController : MonoBehaviour
         inventory.Add(item);
         item.onAdd();
     }
+
     public void dropAllItems()
     {
         foreach (Item item in inventory)
