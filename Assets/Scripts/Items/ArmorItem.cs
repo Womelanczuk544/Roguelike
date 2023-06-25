@@ -9,13 +9,14 @@ public class ArmorItem : Item
     public float speed;
     public float bonusHp;
     public float dashigtime;
-    private void Start()
+    public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         classId = 3;
     }
     public override void onAdd()
     {
+        Start();
         player.GetComponent<PlayerController>().changeDashingRecharge(dashigtime);
         player.GetComponent<PlayerController>().armor = armor;
         player.GetComponent<PlayerController>().changeSpeed(speed);
@@ -23,6 +24,7 @@ public class ArmorItem : Item
     }
     public override void onRemove()
     {
+        Start();
         player.GetComponent<PlayerController>().changeDashingRecharge(1/dashigtime);
         player.GetComponent<PlayerController>().armor = 1;
         player.GetComponent<PlayerController>().changeSpeed(1/speed);

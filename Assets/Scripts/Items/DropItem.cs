@@ -5,12 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class DropItem : Item
 {
-    private void Start()
+    public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
     public override void onAdd()
     {
+        Start();
         player.GetComponent<InventoryController>().dropAllItems();
     }
     public override void onRemove()

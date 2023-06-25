@@ -46,6 +46,7 @@ public class TeleporterController : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
+                SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
                 SaveSystem.SaveInventory(player.GetComponent<InventoryController>().inventory);
                 player.GetComponent<InventoryController>().dropAllItems();
                 StartCoroutine(teleport());
@@ -66,7 +67,7 @@ public class TeleporterController : MonoBehaviour
         //player.SetActive(true);
         if (roomGenerator != null)
         {
-            SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
+            
             roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
             SaveSystem.SaveLevel(roomGenerator.GetComponent<EnemyGenerator>().getCurrnetLevel());
         }

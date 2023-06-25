@@ -11,20 +11,26 @@ public class InventoryController : MonoBehaviour
         inventory = new List<Item>();
         if (SaveSystem.LoadInventory() != null)
         {
-            List<string> temp = SaveSystem.LoadInventory() as List<string>;
-            StartCoroutine(itemAdd(temp));
+            List<string> inventoryFromFile = SaveSystem.LoadInventory() as List<string>;
+            for (int i = 0; i < inventoryFromFile.Count; i++)
+            {
+                string current = inventoryFromFile[i].Substring(0, inventoryFromFile[i].Length - 7);
+                Debug.Log(current + " siema byku dodaje itemka");
+
+
+                GameObject prefab = Resources.Load<GameObject>(current);
+                if (prefab != null)
+                {
+                    add(prefab.GetComponent<Item>());
+                }
+                else
+                {
+                    Debug.Log("nie ma takiego itemka");
+                }
+            }
         }
     }
-    IEnumerator itemAdd(List<string> temp)
-    {
-        for (int i = 0; i < temp.Count; i++)
-        {
-            Debug.Log(temp[i]+" siema byku dodaje itemka");
-            GameObject prefab = Resources.Load<GameObject>(temp[i]);
-            add(prefab.GetComponent<Item>());
-        }
-        yield return null;
-    }
+  
     public void add(Item item)
     {
         if (item.classId != 0)
@@ -34,6 +40,7 @@ public class InventoryController : MonoBehaviour
                 {
                     item2.onRemove();
                     inventory.Remove(item2);
+                    break;
                 }
             }
         inventory.Add(item);

@@ -9,13 +9,14 @@ public class GunItem : Item
     public int projectileSerie;
     public float rechargeTime;
     public float dmgMultiplayer;
-    private void Start()
+    public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         classId = 2;
     }
     public override void onAdd()
     {
+        Start();
         player.GetComponent<SpellController>().setProjectileForce(projectileForce);
         player.GetComponent<SpellController>().setRechargeTime(rechargeTime);
         player.GetComponent<SpellController>().setProjectileSerie(projectileSerie);

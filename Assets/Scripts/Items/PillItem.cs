@@ -13,7 +13,7 @@ public class PillItem : Item
     private float heal=0;
     public Text text;
 
-    private void Start()
+    public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         //text = GameObject.Find("Text1").GetComponent<TextMeshProUGUI>();

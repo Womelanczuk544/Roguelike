@@ -179,12 +179,16 @@ public class SaveSystem
         string path1 = Application.persistentDataPath + "/player.restricted";
         string path2 = Application.persistentDataPath + "/shop.restricted";
         string path3 = Application.persistentDataPath + "/level.restricted";
+        string path4 = Application.persistentDataPath + "/inventory.restricted";
         if (File.Exists(path1))
             File.Delete(path1);
         if (File.Exists(path2))
             File.Delete(path2);
         if (File.Exists(path3))
             File.Delete(path3);
+        if (File.Exists(path4))
+            File.Delete(path4);
+
     }
 
 }
