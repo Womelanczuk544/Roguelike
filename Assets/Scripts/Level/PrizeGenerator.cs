@@ -26,8 +26,16 @@ public class PrizeGenerator : MonoBehaviour
         active2 = Instantiate(prizes[index2]);
         active2.transform.position = -xOffset;
 
-        Cleaner.add(active1);
-        Cleaner.add(active2);
+    }
+
+    public void destroyOnRoomChange()
+    {
+        if (active1 == null || active2 == null) return;
+        if(active1.GetComponent<SpriteRenderer>().isVisible && active2.GetComponent<SpriteRenderer>().isVisible)
+        {
+            Destroy(active1);
+            Destroy(active2);
+        }
     }
 
     public bool getList(List<GameObject> _prizes)

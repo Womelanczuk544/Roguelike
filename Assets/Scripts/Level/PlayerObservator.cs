@@ -10,6 +10,7 @@ public class PlayerObservator : MonoBehaviour
     public EnemyObservator enemyObservator;
     public EnemyGenerator enemyGenerator;
     public DoorManager manager;
+    public PrizeGenerator prizeGenerator;
 
     private GameObject levelNumText;
 
@@ -53,6 +54,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapX++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             //enemyGenerator.remove();
+            prizeGenerator.destroyOnRoomChange();
             Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(-36.5f, 0, 0));
@@ -77,6 +79,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapX--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             //enemyGenerator.remove();
+            prizeGenerator.destroyOnRoomChange();
             Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(36.5f, 0, 0));
@@ -102,6 +105,7 @@ public class PlayerObservator : MonoBehaviour
             playerPosOnMapY++;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
             //enemyGenerator.remove();
+            prizeGenerator.destroyOnRoomChange();
             Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, -20.5f, 0));
@@ -126,7 +130,8 @@ public class PlayerObservator : MonoBehaviour
             generate.finishedMap[playerPosOnMapX, playerPosOnMapY] = currRoom;
             playerPosOnMapY--;
             currRoom = generate.finishedMap[playerPosOnMapX, playerPosOnMapY];
-           // enemyGenerator.remove();
+            // enemyGenerator.remove();
+            prizeGenerator.destroyOnRoomChange();
             Cleaner.clear();
             manager.clear();
             player.GetComponent<Transform>().Translate(new Vector3(0, 20.5f, 0));
