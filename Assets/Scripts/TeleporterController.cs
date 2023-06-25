@@ -46,6 +46,11 @@ public class TeleporterController : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
+<<<<<<< Updated upstream
+=======
+                SaveSystem.SaveInventory(player.GetComponent<InventoryController>().inventory);
+                player.GetComponent<InventoryController>().dropAllItems();
+>>>>>>> Stashed changes
                 StartCoroutine(teleport());
             }
         }
@@ -58,9 +63,10 @@ public class TeleporterController : MonoBehaviour
     IEnumerator teleport()
     {
         animator.SetBool("isTeleporting", true);
-        player.SetActive(false) ;
+        player.active = false;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         animator.SetBool("isTeleporting", false);
+<<<<<<< Updated upstream
 
         SceneManager.LoadScene("Andrzej_scene");//nie przenosi itemow
        player.SetActive(true);
@@ -69,6 +75,17 @@ public class TeleporterController : MonoBehaviour
 
         if (enemyGenerator != null)
             enemyGenerator.GetComponent<EnemyGenerator>().nextLevel();
+=======
+        
+        SceneManager.LoadScene("Andrzej_scene");
+        //player.SetActive(true);
+        if (roomGenerator != null)
+        {
+            SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
+            roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
+            SaveSystem.SaveLevel(roomGenerator.GetComponent<EnemyGenerator>().getCurrnetLevel());
+        }
+>>>>>>> Stashed changes
     }
 
 }
