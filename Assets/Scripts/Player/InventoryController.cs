@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     public List<Item> inventory;
+<<<<<<< Updated upstream
     void Start()
     {
         inventory = new List<Item>();
@@ -13,6 +14,32 @@ public class InventoryController : MonoBehaviour
            {
                 add(item);
            }
+=======
+    public static List<Item> allItemes;
+    private bool addAll = true;
+    void Start()
+    {
+        inventory = new List<Item>();
+        if (SaveSystem.LoadInventory() != null)
+        {
+            List<string> temp = SaveSystem.LoadInventory() as List<string>;
+            
+            for(int i = 0; i < temp.Count; i++)
+            {
+                //Item nowy = new Item("nazwa");
+                //allItemes.Add(nowy);
+                addAll = false;
+                foreach(Item item in allItemes)
+                {
+                    if (item.name == temp[i])
+                    {
+                        add(item);
+                    }
+                }
+                addAll = true;
+            }
+        }
+>>>>>>> Stashed changes
     }
     public void add(Item item)
     {
@@ -26,6 +53,8 @@ public class InventoryController : MonoBehaviour
                 }
             }
         inventory.Add(item);
+        if (addAll==true)
+            allItemes.Add(item);
         item.onAdd();
     }
     public void dropAllItems()
