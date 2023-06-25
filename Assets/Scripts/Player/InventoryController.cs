@@ -1,57 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
     public List<Item> inventory;
-<<<<<<< Updated upstream
-    void Start()
-    {
-        inventory = new List<Item>();
-        if(SaveSystem.LoadInventory() != null)
-           foreach (Item item in SaveSystem.LoadInventory())
-           {
-                add(item);
-           }
-=======
-    public static List<Item> allItemes;
+    public static List<Item> allItemes = new List<Item>();
     private bool addAll = true;
     void Start()
     {
         inventory = new List<Item>();
-        if (SaveSystem.LoadInventory() != null)
-        {
-            List<string> temp = SaveSystem.LoadInventory() as List<string>;
-            
-            for(int i = 0; i < temp.Count; i++)
-            {
-                //Item nowy = new Item("nazwa");
-                //allItemes.Add(nowy);
-                addAll = false;
-                foreach(Item item in allItemes)
-                {
-                    if (item.name == temp[i])
-                    {
-                        add(item);
-                    }
-                }
-                addAll = true;
-            }
+        addAll = false;
+        foreach (Item item in allItemes)
+        {            
+            add(item);
         }
->>>>>>> Stashed changes
+        addAll = true;
     }
     public void add(Item item)
     {
+        bool d = false;
+        Item temp = item;
         if (item.classId != 0)
             foreach (Item item2 in inventory)
             {
                 if (item2.classId == item.classId)
                 {
-                    item2.onRemove();
-                    inventory.Remove(item2);
+                    temp = item2;
+                    d = true;
                 }
             }
+        if (d == true)
+        {
+            temp.onRemove();
+            inventory.Remove(temp);
+            allItemes.Remove(temp);
+        }
         inventory.Add(item);
         if (addAll==true)
             allItemes.Add(item);
