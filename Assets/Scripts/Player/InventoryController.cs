@@ -6,7 +6,6 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     public List<Item> inventory;
-    public List<Item> allItemes;
     void Start()
     {
         inventory = new List<Item>();
@@ -15,13 +14,15 @@ public class InventoryController : MonoBehaviour
             List<string> temp = SaveSystem.LoadInventory() as List<string>;
             for(int i = 0; i < temp.Count; i++)
             {
-                foreach(Item item in allItemes)
-                {
-                    if (item.name == temp[i])
-                    {
-                        add(item);
-                    }
-                }
+                GameObject prefab = Resources.Load<GameObject>(temp[i]);
+                GameObject newObject = Instantiate(prefab);
+                //foreach(Item item in allItemes)
+                //{
+                //    if (item.name == temp[i])
+                //    {
+                //        add(item);
+                //    }
+                //}
             }
         }
     }

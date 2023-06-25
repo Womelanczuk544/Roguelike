@@ -52,7 +52,7 @@ public class SaveSystem
             inventoryNames.Add(item.name);
         }
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Path.Combine(Application.persistentDataPath, "/inventory.restricted");
+        string path = Application.persistentDataPath + "/inventory.restricted";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, inventoryNames);
