@@ -23,6 +23,7 @@ public class ItemVisual : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.E))
             {
                 player.GetComponent<InventoryController>().add(item);
+                StartCoroutine(seeText());
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
@@ -34,7 +35,6 @@ public class ItemVisual : MonoBehaviour
         {
             canvas.transform.Find("Text").gameObject.SetActive(true);
             isPlayerIn = true;
-            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,4 +46,9 @@ public class ItemVisual : MonoBehaviour
         }
     }
 
+    IEnumerator seeText()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
+    }
 }

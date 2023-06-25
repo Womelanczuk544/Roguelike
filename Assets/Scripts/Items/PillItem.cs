@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 [System.Serializable]
 public class PillItem : Item
@@ -10,15 +11,14 @@ public class PillItem : Item
     private float speed = 1;
     private float bonusHp =0;
     private float heal=0;
-    private TextMeshProUGUI text;
+    public Text text;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        text = GameObject.Find("PillText").GetComponent<TextMeshProUGUI>();
+        //text = GameObject.Find("Text1").GetComponent<TextMeshProUGUI>();
         text.enabled = false;
         int index1 = UnityEngine.Random.Range(0, 4);
-        index1 = 2;
         switch(index1)
         {
             case 0:
@@ -46,7 +46,7 @@ public class PillItem : Item
     IEnumerator ShowText()
     {
         text.enabled = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.1f);
         text.enabled = false;
     }
     public override void onAdd()

@@ -46,12 +46,12 @@ public class PrizeGenerator : MonoBehaviour
     private void Update()
     {
         if (active1 == null && active2 == null) return;
-        if (active1 != null && active1.active == false)
+        if (active1 != null && active1.GetComponent<Collider2D>().enabled == false)
         {            
             Destroy(active2);
             active2 = null;
         }
-        if (active2 != null && active2.active == false)
+        if (active2 != null && active2.GetComponent<Collider2D>().enabled == false)
         {
             Destroy(active1);
             active1 = null;
