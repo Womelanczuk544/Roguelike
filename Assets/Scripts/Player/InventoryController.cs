@@ -43,6 +43,11 @@ public class InventoryController : MonoBehaviour
                     break;
                 }
             }
+        else
+        {
+            item.onAdd();
+            return;
+        }
         inventory.Add(item);
         item.onAdd();
     }

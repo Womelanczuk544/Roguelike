@@ -12,6 +12,7 @@ public class PlayerData
     public static int money;
     public float currentHealth;
     public int level;
+    public float dmg;
     public List<Item> inventory;
 
     public PlayerData(PlayerController player)
@@ -21,6 +22,7 @@ public class PlayerData
         dashiingTime= player.dashiingTime;
         baseHealth= player.baseHealth;
         currentHealth = player.currentHealth;
+        dmg = player.damageMultiplayer;
     }
     public PlayerData(List<Item> inventory)
     {

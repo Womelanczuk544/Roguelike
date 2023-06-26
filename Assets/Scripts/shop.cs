@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class shop : MonoBehaviour
 {
     public static int money;
     public GameObject text;
+    public Text moneyText;
     private bool canOpenShop = false;
     private bool canCloseShop = false;
     public Canvas shopCanvas;
@@ -14,6 +16,7 @@ public class shop : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(money);
         if(shopCanvas != null)
         {
             shopCanvas.enabled = false;
@@ -31,6 +34,11 @@ public class shop : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadShop();
         money = data.getMoney();
+    }
+
+    public int getMoney()
+    {
+        return money;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,6 +59,7 @@ public class shop : MonoBehaviour
         {
             canCloseShop= true;
             Debug.Log("Shop opened");
+            moneyText.text = money.ToString();
             shopCanvas.enabled = true;
             firstLocationCanvas.enabled = false;
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled=false;

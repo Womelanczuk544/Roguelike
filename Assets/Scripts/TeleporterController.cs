@@ -67,7 +67,7 @@ public class TeleporterController : MonoBehaviour
         //player.SetActive(true);
         if (roomGenerator != null)
         {
-            
+            roomGenerator.GetComponent<EnemyGenerator>().nextLevel();
             SaveSystem.SaveLevel(roomGenerator.GetComponent<EnemyGenerator>().getCurrnetLevel());
         }
     }

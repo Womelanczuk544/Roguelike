@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
     private float maxHealth;
-    private float damageMultiplayer;
     private SpellController spellController;
     private HealthBar healthbarScript;
     private float scale;
 
-    public float dashRechargeTime = 2;
+    public float damageMultiplayer = 1f;
+    public float dashRechargeTime = 2f;
     public float armor = 1.0f;
     public float currentHealth;
     public float speed = 4.5f;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damageMultiplayer = 1f;
         LoadPlayer();
         healthbarScript = healthBar.GetComponent<HealthBar>();
         scale = transform.localScale.x;
@@ -42,8 +43,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spellController = GetComponent<SpellController>();
+        Debug.Log(score + " punkciki");
 
-        damageMultiplayer = 1;
         //currentHealth = baseHealth;
         maxHealth = baseHealth;
         healthbarScript.SetMaxHealth(baseHealth);
@@ -148,6 +149,7 @@ public class PlayerController : MonoBehaviour
     public void getPoints(int _score)
     {
         score += _score;
+        Debug.Log(score + " tyle bratku teraz jest");
     }
 
     public void takeDamage(float damage)
@@ -160,9 +162,11 @@ public class PlayerController : MonoBehaviour
         if (currentHealth < 0)
         {
             shop.money += score;
+            score= 0;
             currentHealth = maxHealth;
             SaveSystem.DeleteLevel();
             SaveSystem.DeleteInventory();
+            SaveSystem.DeletePlayer();
             SceneManager.LoadScene("Game over");  
         }
         if (currentHealth > maxHealth)
@@ -199,10 +203,11 @@ public class PlayerController : MonoBehaviour
         if (data != null)
         {
             speed = data.speed;
-            dashForce= data.dashForce;
+            dashForce = data.dashForce;
             dashiingTime = data.dashiingTime;
             baseHealth = data.baseHealth;
-            currentHealth= data.currentHealth;
+            currentHealth = data.currentHealth;
+            damageMultiplayer = data.dmg;
         }
     }
 }

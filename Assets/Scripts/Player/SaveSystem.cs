@@ -99,6 +99,18 @@ public class SaveSystem
             Debug.LogError("sprawa sie rypla" + path + "nie ma go");
         }
     }
+    public static void DeletePlayer()
+    {
+        string path = Application.persistentDataPath + "/player.restricted";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+        else
+        {
+            Debug.LogError("sprawa sie rypla" + path + "nie ma go");
+        }
+    }
 
     public static PlayerData LoadPlayer()
     {

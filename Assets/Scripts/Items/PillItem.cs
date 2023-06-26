@@ -46,7 +46,7 @@ public class PillItem : Item
     IEnumerator ShowText()
     {
         text.enabled = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         text.enabled = false;
     }
     public override void onAdd()
