@@ -6,10 +6,14 @@ using UnityEngine;
 public class SpellItem : Item
 {
     public GameObject projectile;
+
+    public override int classId()
+    {
+        return 1;
+    }
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        classId = 1;
     }
     public override void onAdd()
     {

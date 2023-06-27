@@ -29,13 +29,13 @@ public class PlayerController : MonoBehaviour
     public float dashiingTime = 0.09f;
     public float baseHealth = 100f;
     public static int score;
+    public bool dashBought = false;
     public GameObject healthBar;
     public GameObject gun;
 
     // Start is called before the first frame update
     void Start()
     {
-        damageMultiplayer = 1f;
         LoadPlayer();
         healthbarScript = healthBar.GetComponent<HealthBar>();
         scale = transform.localScale.x;
@@ -53,6 +53,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.Find("TextCurrentHp")!=null)
+        {
+            GameObject.Find("TextCurrentHp").GetComponent<Text>().text= currentHealth.ToString() + "/" + maxHealth.ToString();
+        }
         //spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
         healthbarScript.SetHealth(currentHealth);
@@ -92,7 +96,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ChangeIsRunning());
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash && dashBought)
         {
             StartCoroutine(Dash());
         }
@@ -161,8 +165,8 @@ public class PlayerController : MonoBehaviour
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
-            shop.money += score;
-            score= 0;
+            GameObject.FindWithTag("Shop").GetComponent<shop>().money += score;
+            SaveSystem.SaveShop(GameObject.FindGameObjectWithTag("Shop").GetComponent<shop>());
             currentHealth = maxHealth;
             SaveSystem.DeleteLevel();
             SaveSystem.DeleteInventory();
@@ -209,5 +213,18 @@ public class PlayerController : MonoBehaviour
             currentHealth = data.currentHealth;
             damageMultiplayer = data.dmg;
         }
+        PlayerData data2= SaveSystem.LoadShop();
+        if(data2 != null )
+        {
+            dashRechargeTime= data2.dashRechargeTime;
+            dashBought = data2.dashBought;
+            damageMultiplayer *= data2.dmg;
+            baseHealth += data2.baseHealth;//tu moze byc blad
+        }
+    }
+
+    public void clearScore()
+    {
+        score = 0;
     }
 }

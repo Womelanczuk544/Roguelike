@@ -9,10 +9,13 @@ public class ArmorItem : Item
     public float speed;
     public float bonusHp;
     public float dashigtime;
+    public override int classId()
+    {
+        return 3;
+    }
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        classId = 3;
     }
     public override void onAdd()
     {

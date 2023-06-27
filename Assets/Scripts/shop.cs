@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class shop : MonoBehaviour
 {
-    public static int money;
+    public int money;
     public GameObject text;
     public Text moneyText;
     private bool canOpenShop = false;
     private bool canCloseShop = false;
     public Canvas shopCanvas;
     public Canvas firstLocationCanvas;
+    public bool dashBought = false;
+    public float dashRechargeTime = 2f;
+    public float additionalMaxHealth = 0;
+    public float damageMultiplayer = 1;
 
 
     private void Start()
     {
-        Debug.Log(money);
         if(shopCanvas != null)
         {
             shopCanvas.enabled = false;
@@ -25,6 +28,16 @@ public class shop : MonoBehaviour
         {
             firstLocationCanvas.enabled = true;
         }
+        if(SaveSystem.LoadShop()!=null)
+        {
+            PlayerData data = SaveSystem.LoadShop();
+            money = data.getMoney();
+            dashBought = data.dashBought;
+            dashRechargeTime = data.dashRechargeTime;
+            damageMultiplayer = data.damageMultiplayer;
+
+        }
+        Debug.Log(money);
     }
     public void SaveShop()
     {
@@ -55,6 +68,7 @@ public class shop : MonoBehaviour
 
     private void Update()
     {
+       
         if(canOpenShop && Input.GetKeyDown(KeyCode.E) && !canCloseShop)
         {
             canCloseShop= true;
@@ -63,6 +77,7 @@ public class shop : MonoBehaviour
             shopCanvas.enabled = true;
             firstLocationCanvas.enabled = false;
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled=false;
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GameObject.FindWithTag("Player").GetComponent<SpellController>().enabled=false;
         }
         else if (canOpenShop && Input.GetKeyDown(KeyCode.E) && canCloseShop)

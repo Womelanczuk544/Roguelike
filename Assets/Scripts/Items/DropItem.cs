@@ -5,6 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class DropItem : Item
 {
+
+    public override int classId()
+    {
+        return 0;
+    }
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

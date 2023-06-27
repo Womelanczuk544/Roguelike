@@ -9,8 +9,11 @@ public class PlayerData
     public float dashForce;
     public float dashiingTime;
     public float baseHealth;
-    public static int money;
+    public bool dashBought;
+    public float dashRechargeTime;
+    public int money;
     public float currentHealth;
+    public float damageMultiplayer;
     public int level;
     public float dmg;
     public List<Item> inventory;
@@ -31,6 +34,9 @@ public class PlayerData
     public PlayerData(shop shop)
     {
         money = shop.money;
+        dashBought = shop.dashBought;
+        dashRechargeTime = shop.dashRechargeTime;
+        dmg = shop.damageMultiplayer;
     }
 
     public PlayerData(int tpLevel)

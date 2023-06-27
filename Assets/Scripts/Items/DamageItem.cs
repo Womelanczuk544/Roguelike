@@ -8,6 +8,10 @@ public class DamageItem : Item
     public float value;
 
     private float devalue;
+    public override int classId()
+    {
+        return 0;
+    }
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

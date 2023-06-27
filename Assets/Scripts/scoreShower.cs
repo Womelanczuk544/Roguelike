@@ -20,6 +20,6 @@ public class scoreShower : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "first_location")
             score.text = "SCORE: " + PlayerController.score;     
         else
-            score.text = "MONEY: " + shop.money;
+            score.text = "MONEY: " + GameObject.FindWithTag("Shop").GetComponent<shop>().money;
     }
 }

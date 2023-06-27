@@ -10,7 +10,8 @@ public class EndingScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "GOLD EARNED " + shop.money.ToString();
+        scoreText.text = "GOLD EARNED " + PlayerController.score.ToString();
+        GameObject.FindWithTag("Player").GetComponent<PlayerController>().clearScore();
     }
 
 }

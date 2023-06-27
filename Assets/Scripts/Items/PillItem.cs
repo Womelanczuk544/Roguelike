@@ -13,6 +13,11 @@ public class PillItem : Item
     private float heal=0;
     public Text text;
 
+    public override int classId()
+    {
+        return 0;
+    }
+
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class BaseEnemyDmg: MonoBehaviour
 {
-    private float time = 0;
-    private bool isAttacking = false;
+
     private GameObject player;
 
     public float minDamage;
@@ -18,16 +17,7 @@ public class BaseEnemyDmg: MonoBehaviour
     }
     public void Update()
     {
-        if (isAttacking==true)
-        {
-            time += Time.deltaTime;
-            if(time > 1)
-            {
-                time = 0;
-                float dmg = Random.Range(minDamage, maxDamage);
-                player.GetComponent<PlayerController>().takeDamage(dmg);
-            }
-        }
+     
         if (gameObject.GetComponent<EnemyController>().health <= 0)
         {
             minDamage = 0; 
@@ -39,11 +29,12 @@ public class BaseEnemyDmg: MonoBehaviour
         
         if (collision.collider.GameObject().tag == "Player")
         {
-            isAttacking = true;
             float dmg = Random.Range(minDamage, maxDamage);
             collision.gameObject.GetComponent<PlayerController>().takeDamage(dmg);
         }
     }
+
+
     public void setDmg(float minDmg, float maxDmg)
     {
         minDamage = minDmg;

@@ -8,7 +8,7 @@ public abstract class Item : MonoBehaviour
 {
     protected GameObject player;
 
-    public int classId = 0;
+    public abstract int classId();
     public abstract void onAdd();
     public abstract void onRemove();
     public abstract void triggerEffect();
