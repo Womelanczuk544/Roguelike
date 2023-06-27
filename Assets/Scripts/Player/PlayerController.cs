@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(damageMultiplayer == 0f)
+            damageMultiplayer= 1f;
         if(GameObject.Find("TextCurrentHp")!=null)
         {
             GameObject.Find("TextCurrentHp").GetComponent<Text>().text= currentHealth.ToString() + "/" + maxHealth.ToString();

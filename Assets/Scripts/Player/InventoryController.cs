@@ -15,6 +15,11 @@ public class InventoryController : MonoBehaviour
             for (int i = 0; i < inventoryFromFile.Count; i++)
             {
                 string current = inventoryFromFile[i].Substring(0, inventoryFromFile[i].Length - 7);
+                if (inventoryFromFile[i].Substring(inventoryFromFile[i].Length - 8, inventoryFromFile[i].Length - 1)  == "(clone)")
+                {
+                    current = inventoryFromFile[i].Substring(0, inventoryFromFile[i].Length - 7);
+                }
+                else current = inventoryFromFile[i];
                 Debug.Log(current + " siema byku dodaje itemka");
 
 
