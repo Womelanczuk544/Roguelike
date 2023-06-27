@@ -59,8 +59,8 @@ public class ShopStaff : MonoBehaviour
             shop.GetComponent<shop>().money -= 300;
             text.text = shop.GetComponent<shop>().money.ToString();
             
-                shop.GetComponent<shop>().damageMultiplayer *= 1.2f;
-                player.GetComponent<PlayerController>().damageMultiplayer *= 1.2f;
+                shop.GetComponent<shop>().damageMultiplayer *= 1.05f;
+                player.GetComponent<PlayerController>().damageMultiplayer *= 1.05f;
             
             SaveSystem.SaveShop(GameObject.FindGameObjectWithTag("Shop").GetComponent<shop>());
         }

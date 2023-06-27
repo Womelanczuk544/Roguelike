@@ -14,8 +14,9 @@ public class InventoryController : MonoBehaviour
             List<string> inventoryFromFile = SaveSystem.LoadInventory() as List<string>;
             for (int i = 0; i < inventoryFromFile.Count; i++)
             {
-                string current = inventoryFromFile[i].Substring(0, inventoryFromFile[i].Length - 7);
-                if (inventoryFromFile[i].Substring(inventoryFromFile[i].Length - 8, inventoryFromFile[i].Length - 1)  == "(clone)")
+                int dl = inventoryFromFile[i].Length;
+                string current;
+                if (inventoryFromFile[i].ToCharArray()[dl-1] == ')')
                 {
                     current = inventoryFromFile[i].Substring(0, inventoryFromFile[i].Length - 7);
                 }

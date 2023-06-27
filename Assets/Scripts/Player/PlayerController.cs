@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private HealthBar healthbarScript;
     private float scale;
 
+    public static bool firstEnter = true;
     public float damageMultiplayer = 1f;
     public float dashRechargeTime = 2f;
     public float armor = 1.0f;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         if(GameObject.Find("TextCurrentHp")!=null)
         {
             GameObject.Find("TextCurrentHp").GetComponent<Text>().text= currentHealth.ToString() + "/" + maxHealth.ToString();
+
         }
         //spriteRenderer.sortingOrder = -(int)transform.position.y;
         movementDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
@@ -102,7 +104,6 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-
     }
 
     IEnumerator ChangeIsRunning()
@@ -164,9 +165,12 @@ public class PlayerController : MonoBehaviour
             currentHealth -= damage;
         else
             currentHealth -= armor*damage;
+        int temp = (int)currentHealth;
+        currentHealth = temp;
         healthbarScript.SetHealth(currentHealth);
         if (currentHealth < 0)
         {
+            firstEnter = true;
             GameObject.FindWithTag("Shop").GetComponent<shop>().money += score;
             SaveSystem.SaveShop(GameObject.FindGameObjectWithTag("Shop").GetComponent<shop>());
             currentHealth = maxHealth;
@@ -205,6 +209,7 @@ public class PlayerController : MonoBehaviour
     }
     public void LoadPlayer()
     {
+
         PlayerData data = SaveSystem.LoadPlayer();
         if (data != null)
         {
@@ -220,7 +225,11 @@ public class PlayerController : MonoBehaviour
         {
             dashRechargeTime= data2.dashRechargeTime;
             dashBought = data2.dashBought;
-            damageMultiplayer *= data2.dmg;
+            if (firstEnter)
+            {
+                damageMultiplayer *= data2.dmg;
+                firstEnter = false;
+            }
             baseHealth += data2.baseHealth;//tu moze byc blad
         }
     }
